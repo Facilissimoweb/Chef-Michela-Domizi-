@@ -1,0 +1,6 @@
+{
+  "name": "Chef Michela Domizi",
+  "description": "Sito web e consulenza culinaria per Chef Michela Domizi, ispirato al territorio delle Marche.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
