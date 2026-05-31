@@ -8,6 +8,7 @@ import { Menu, X, UtensilsCrossed, Briefcase, NotebookPen, Check, MapPin, Mail, 
 import BiographyView from './components/BiographyView';
 import ServicesView from './components/ServicesView';
 import EventsView from './components/EventsView';
+import domiziImage from './assets/images/domizi-683x1024.jpeg';
 import ConversionForm from './components/ConversionForm';
 import StickyFooter from './components/StickyFooter';
 
@@ -360,7 +361,7 @@ export default function App() {
                   id="about-portrait"
                   alt="Ritratto di Michela Domizi" 
                   className="w-full h-full object-cover" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe37KZnkGyDxWoK26y2Qh1JZr9bAx2_kKThn8nL8bWYYKKjYChlnGqweyQjxxMzZNtPJ9oD267mlb7urt0V-Lkp45vvzYPb8pcVILSUpgiG_UN9gTZ2X4paEQGUKjlVcB8wf4aqxbxhLnXqsip8y8YkrY-FG0_pa7M3fyN5GDGep66IaIRWflG8IjYav1xusFGL5QXIpSZHluS8JFevxWx37iVD8Hm7I3JMG4s9t2GH8dwXh5Se38mvLkLcrdrMIj1OSCMdLmGMFPx"
+                  src={domiziImage}
                   referrerPolicy="no-referrer"
                 />
               </div>
