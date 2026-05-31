@@ -15,13 +15,6 @@ export default function App() {
   const [activeView, setActiveView] = useState<'home' | 'bio' | 'services' | 'eventi'>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasShadow, setHasShadow] = useState(false);
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    service: 'Cena Privata',
-    message: ''
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isCookieBannerOpen, setIsCookieBannerOpen] = useState(true);
   const [shareInfo, setShareInfo] = useState({ url: 'https://ais-pre-uxt5g2uxclhimjtes7ujes-205869432441.europe-west2.run.app', text: 'Scopri la cucina rurale contemporanea di Chef Michela Domizi nelle Marche!' });
@@ -141,19 +134,6 @@ export default function App() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-    // Reset form after a small delay
-    setTimeout(() => {
-      setFormState({
-        name: '',
-        email: '',
-        service: 'Cena Privata',
-        message: ''
-      });
-    }, 1000);
-  };
 
   return (
     <div className="bg-background text-on-background font-body-md overflow-x-hidden min-h-screen">
@@ -329,17 +309,13 @@ export default function App() {
 
                   {/* Main Spectacular Food Photo Frame with Ambient Video */}
                   <div className="relative w-full h-full rounded-[30px] overflow-hidden shadow-2xl border border-white/40 bg-[#f4ece7] z-10 group">
-                    <video 
-                      id="hero-bg-video"
-                      className="w-full h-full object-cover object-center scale-102 filter brightness-[0.98] contrast-[1.02]" 
-                      src="./assets/video/nome-video.mp4"
-                      poster="./assets/img/anteprima-video.jpg"
-                      controls
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    />
+                    <iframe
+                      className="w-full h-full object-cover pointer-events-none scale-110"
+                      src="https://www.youtube.com/embed/_eMHMj-asaA?autoplay=1&mute=1&loop=1&playlist=_eMHMj-asaA&controls=0&showinfo=0&rel=0&modestbranding=1"
+                      title="Chef Michela Domizi Video"
+                      allow="autoplay; encrypted-media"
+                    ></iframe>
+                    <div className="absolute inset-0 bg-black/5 pointer-events-none"></div>
                     
                     {/* Floating pill */}
                     <div className="absolute top-4 left-4 bg-black/45 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-white font-label-md text-xs tracking-wider uppercase flex items-center gap-1.5 shadow-lg">
