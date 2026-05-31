@@ -310,8 +310,8 @@ export default function App() {
                   {/* Main Spectacular Food Photo Frame with Ambient Video */}
                   <div className="relative w-full h-full rounded-[30px] overflow-hidden shadow-2xl border border-white/40 bg-[#f4ece7] z-10 group">
                     <iframe
-                      className="w-full h-full object-cover pointer-events-none scale-110"
-                      src="https://www.youtube.com/embed/_eMHMj-asaA?autoplay=1&mute=1&loop=1&playlist=_eMHMj-asaA&controls=0&showinfo=0&rel=0&modestbranding=1"
+                      className="w-full h-full object-cover scale-110"
+                      src="https://www.youtube.com/embed/_eMHMj-asaA?autoplay=1&mute=0&loop=1&playlist=_eMHMj-asaA&controls=1&showinfo=0&rel=0&modestbranding=1"
                       title="Chef Michela Domizi Video"
                       allow="autoplay; encrypted-media"
                     ></iframe>
@@ -325,9 +325,9 @@ export default function App() {
 
                     {/* Exquisite Plate Overlay */}
                     <div className="absolute bottom-4 right-4 max-w-[240px] bg-[#fff8f4]/95 backdrop-blur-md p-4 rounded-2xl border border-white/40 shadow-xl hidden sm:block animate-fade-in">
-                      <p className="font-headline-sm text-base text-primary font-semibold leading-tight mb-1">Passione Artigianale</p>
-                      <p className="font-body-md text-xs text-secondary leading-normal">
-                        Ravioli fatti a mano ripieni di ricotta biologica locale e zafferano selvatico.
+                      <p className="font-headline-sm text-base text-primary font-semibold leading-tight mb-1">In collaborazione con</p>
+                      <p className="font-body-md text-xs text-secondary leading-normal font-medium">
+                        Molinos del Duero (Spagna)
                       </p>
                     </div>
                   </div>
