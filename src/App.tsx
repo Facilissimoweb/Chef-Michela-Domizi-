@@ -10,7 +10,6 @@ import ServicesView from './components/ServicesView';
 import EventsView from './components/EventsView';
 import ConversionForm from './components/ConversionForm';
 import StickyFooter from './components/StickyFooter';
-import { Magnet, FadeIn, AnimatedText } from './components/MotionComponents';
 
 export default function App() {
   const [activeView, setActiveView] = useState<'home' | 'bio' | 'services' | 'eventi'>('home');
@@ -159,8 +158,7 @@ export default function App() {
   return (
     <div className="bg-background text-on-background font-body-md overflow-x-hidden min-h-screen">
       {/* TopNavBar */}
-      <FadeIn delay={0} y={-20} className="fixed top-0 w-full z-50">
-        <nav id="nav-bar" className={`w-full bg-primary/95 backdrop-blur-md transition-shadow duration-300 border-b border-surface/10 ${hasShadow ? 'shadow-lg' : ''}`}>
+      <nav id="nav-bar" className={`fixed top-0 w-full z-50 bg-primary/95 backdrop-blur-md transition-shadow duration-300 border-b border-surface/10 ${hasShadow ? 'shadow-lg' : ''}`}>
         <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
           <a className="font-headline-sm text-headline-sm text-surface hover:text-surface-variant transition-colors" href="#" onClick={(e) => handleScroll(e, '#')}>
             Chef Michela Domizi
@@ -268,7 +266,6 @@ export default function App() {
           </div>
         )}
       </nav>
-    </FadeIn>
 
       <main>
         {activeView === 'home' ? (
@@ -288,41 +285,35 @@ export default function App() {
                   <span>Chef a Domicilio &amp; Consulente Culinaria</span>
                 </div>
                 
-                <FadeIn delay={0.15} y={40}>
-                  <h1 className="font-headline-xl text-5xl sm:text-6xl lg:text-7xl text-primary leading-[1.05] tracking-tight">
-                    <span className="block font-medium drop-shadow-sm font-headline-lg">Michela Domizi</span>
-                    <span className="block text-2xl sm:text-3xl lg:text-4xl italic font-normal text-[#8b5e3c] mt-2 font-headline-md font-serif">
-                      Chef a Domicilio &amp; Consulente Culinaria
-                    </span>
-                  </h1>
-                </FadeIn>
+                <h1 className="font-headline-xl text-5xl sm:text-6xl lg:text-7xl text-primary leading-[1.05] tracking-tight">
+                  <span className="block font-medium drop-shadow-sm font-headline-lg">Michela Domizi</span>
+                  <span className="block text-2xl sm:text-3xl lg:text-4xl italic font-normal text-[#8b5e3c] mt-2 font-headline-md font-serif">
+                    Chef a Domicilio &amp; Consulente Culinaria
+                  </span>
+                </h1>
                 
-                <FadeIn delay={0.35} y={20}>
-                  <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
-                    Elevare le tradizioni delle Marche attraverso un'esperienza artigianale d'autore e una contemporanea visione culinaria. Un viaggio gastronomico che porta l'acquolina in bocca e il fine-dining direttamente a casa tua o nella tua cucina professionale.
-                  </p>
-                </FadeIn>
+                <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+                  Elevare le tradizioni delle Marche attraverso un'esperienza artigianale d'autore e una contemporanea visione culinaria. Un viaggio gastronomico che porta l'acquolina in bocca e il fine-dining direttamente a casa tua o nella tua cucina professionale.
+                </p>
                 
-                <FadeIn delay={0.5} y={20}>
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <button 
-                      className="bg-primary text-surface px-8 py-4 double-rounded rounded-full font-label-md text-label-md hover:bg-primary/95 transition-all duration-300 text-center font-bold active:scale-95 shadow-sm" 
-                      onClick={() => {
-                        setActiveView('services');
-                        window.scrollTo({ top: 0, behavior: 'instant' });
-                      }}
-                    >
-                      Scopri i Servizi
-                    </button>
-                    <a 
-                      className="border border-[#76786f]/30 bg-white/40 backdrop-blur-sm text-primary px-8 py-4 rounded-full font-label-md text-label-md hover:bg-surface-container hover:border-primary/50 transition-all duration-300 text-center font-semibold" 
-                      href="#contact"
-                      onClick={(e) => handleScroll(e, '#contact')}
-                    >
-                      Prenota un'Esperienza
-                    </a>
-                  </div>
-                </FadeIn>
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <button 
+                    className="bg-primary text-surface px-8 py-4 double-rounded rounded-full font-label-md text-label-md hover:bg-primary/95 transition-all duration-300 text-center font-bold active:scale-95 shadow-sm" 
+                    onClick={() => {
+                      setActiveView('services');
+                      window.scrollTo({ top: 0, behavior: 'instant' });
+                    }}
+                  >
+                    Scopri i Servizi
+                  </button>
+                  <a 
+                    className="border border-[#76786f]/30 bg-white/40 backdrop-blur-sm text-primary px-8 py-4 rounded-full font-label-md text-label-md hover:bg-surface-container hover:border-primary/50 transition-all duration-300 text-center font-semibold" 
+                    href="#contact"
+                    onClick={(e) => handleScroll(e, '#contact')}
+                  >
+                    Prenota un'Esperienza
+                  </a>
+                </div>
               </div>
 
               {/* Spectacular Visual Column */}
@@ -337,35 +328,33 @@ export default function App() {
                   </div>
 
                   {/* Main Spectacular Food Photo Frame with Ambient Video */}
-                  <Magnet>
-                    <div className="relative w-full h-full rounded-[30px] overflow-hidden shadow-2xl border border-white/40 bg-[#f4ece7] z-10 group">
-                      <video 
-                        id="hero-bg-video"
-                        className="w-full h-full object-cover object-center scale-102 filter brightness-[0.98] contrast-[1.02]" 
-                        src="./assets/video/nome-video.mp4"
-                        poster="./assets/img/anteprima-video.jpg"
-                        controls
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                      />
-                      
-                      {/* Floating pill */}
-                      <div className="absolute top-4 left-4 bg-black/45 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-white font-label-md text-xs tracking-wider uppercase flex items-center gap-1.5 shadow-lg">
-                        <span className="w-2 h-2 rounded-full bg-[#eebf6d]"></span>
-                        <span>Materia Prima Pura</span>
-                      </div>
-
-                      {/* Exquisite Plate Overlay */}
-                      <div className="absolute bottom-4 right-4 max-w-[240px] bg-[#fff8f4]/95 backdrop-blur-md p-4 rounded-2xl border border-white/40 shadow-xl hidden sm:block animate-fade-in">
-                        <p className="font-headline-sm text-base text-primary font-semibold leading-tight mb-1">Passione Artigianale</p>
-                        <p className="font-body-md text-xs text-secondary leading-normal">
-                          Ravioli fatti a mano ripieni di ricotta biologica locale e zafferano selvatico.
-                        </p>
-                      </div>
+                  <div className="relative w-full h-full rounded-[30px] overflow-hidden shadow-2xl border border-white/40 bg-[#f4ece7] z-10 group">
+                    <video 
+                      id="hero-bg-video"
+                      className="w-full h-full object-cover object-center scale-102 filter brightness-[0.98] contrast-[1.02]" 
+                      src="./assets/video/nome-video.mp4"
+                      poster="./assets/img/anteprima-video.jpg"
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                    
+                    {/* Floating pill */}
+                    <div className="absolute top-4 left-4 bg-black/45 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-white font-label-md text-xs tracking-wider uppercase flex items-center gap-1.5 shadow-lg">
+                      <span className="w-2 h-2 rounded-full bg-[#eebf6d]"></span>
+                      <span>Materia Prima Pura</span>
                     </div>
-                  </Magnet>
+
+                    {/* Exquisite Plate Overlay */}
+                    <div className="absolute bottom-4 right-4 max-w-[240px] bg-[#fff8f4]/95 backdrop-blur-md p-4 rounded-2xl border border-white/40 shadow-xl hidden sm:block animate-fade-in">
+                      <p className="font-headline-sm text-base text-primary font-semibold leading-tight mb-1">Passione Artigianale</p>
+                      <p className="font-body-md text-xs text-secondary leading-normal">
+                        Ravioli fatti a mano ripieni di ricotta biologica locale e zafferano selvatico.
+                      </p>
+                    </div>
+                  </div>
 
                   {/* Secondary Overlapping Craft Detail Image */}
                   <div className="absolute -bottom-6 -left-10 w-44 h-44 rounded-2xl overflow-hidden shadow-xl border-4 border-[#fff8f4] hidden md:block z-20 group">
@@ -405,14 +394,12 @@ export default function App() {
             </div>
             <div className="reveal">
               <h2 className="font-headline-lg text-headline-lg text-primary mb-8">La Filosofia del Gusto</h2>
-              <AnimatedText 
-                text="Nata e cresciuta tra le colline della regione Marche, il mio percorso culinario è iniziato nelle cucine della mia infanzia, dove il rispetto per l'ingrediente è stata la prima lezione appresa."
-                className="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed"
-              />
-              <AnimatedText 
-                text="Come chef a domicilio e consulente professionista, unisco la genuinità rurale alle tecniche contemporanee. Il mio approccio è minimalista e mirato: ogni piatto è l'espressione curata di stagione, territorio e maestria artigianale."
-                className="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed"
-              />
+              <p className="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed">
+                Nata e cresciuta tra le colline della regione Marche, il mio percorso culinario è iniziato nelle cucine della mia infanzia, dove il rispetto per l'ingrediente è stata la prima lezione appresa.
+              </p>
+              <p className="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed">
+                Come chef a domicilio e consulente professionista, unisco la genuinità rurale alle tecniche contemporanee. Il mio approccio è minimalista e mirato: ogni piatto è l'espressione curata di stagione, territorio e maestria artigianale.
+              </p>
               <div className="mb-8">
                 <button 
                   onClick={() => {

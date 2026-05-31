@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Sparkles, Check, Calendar, Heart, Award, UtensilsCrossed } from 'lucide-react';
-import { FadeIn } from './MotionComponents';
 
 interface EventsViewProps {
   onBackToHome: () => void;
@@ -56,18 +55,14 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
             <Sparkles size={12} className="text-[#eebf6d]" />
             <span>DIREZIONE GASTRONOMICA SARTORIALE</span>
           </div>
-          <FadeIn delay={0.15} y={40}>
-            <h1 className="font-headline-xl text-4xl md:text-6xl text-[#fff8f4] font-bold tracking-tight leading-[1.12] drop-shadow-md">
-              L’Arte della Tavola,<br />
-              <span className="italic font-normal text-white">Ovunque Tu Sia</span>
-            </h1>
-          </FadeIn>
+          <h1 className="font-headline-xl text-4xl md:text-6xl text-[#fff8f4] font-bold tracking-tight leading-[1.12] drop-shadow-md">
+            L’Arte della Tavola,<br />
+            <span className="italic font-normal text-white">Ovunque Tu Sia</span>
+          </h1>
           <div className="w-16 h-0.5 bg-white/25 mx-auto my-4"></div>
-          <FadeIn delay={0.35} y={20}>
-            <p className="font-body-lg text-[#e8e1dc] max-w-2xl mx-auto leading-relaxed drop-shadow-sm font-medium">
-              La cucina non è solo un atto di precisione: è il cuore di un momento da ricordare. Che si tratti di una cena intima nel calore della tua casa, di un evento aziendale che deve lasciare il segno, o di un’occasione speciale in una location che ti sta a cuore, la mia cucina si sposta per te.
-            </p>
-          </FadeIn>
+          <p className="font-body-lg text-[#e8e1dc] max-w-2xl mx-auto leading-relaxed drop-shadow-sm font-medium">
+            La cucina non è solo un atto di precisione: è il cuore di un momento da ricordare. Che si tratti di una cena intima nel calore della tua casa, di un evento aziendale che deve lasciare il segno, o di un’occasione speciale in una location che ti sta a cuore, la mia cucina si sposta per te.
+          </p>
         </div>
       </section>
 
@@ -118,7 +113,7 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Step 1: Menu su misura */}
-            <FadeIn className="bg-background p-8 rounded-xl border border-outline/5 hover:shadow-md transition-all duration-300 flex flex-col justify-between" delay={0.15} y={30}>
+            <div className="bg-background p-8 rounded-xl border border-outline/5 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
                   <UtensilsCrossed size={20} />
@@ -129,10 +124,10 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
                 </p>
               </div>
               <div className="pt-6 text-[11px] font-mono uppercase text-primary/75 tracking-wider font-semibold">01 / Personalizzazione</div>
-            </FadeIn>
+            </div>
 
             {/* Step 2: Approccio etico */}
-            <FadeIn className="bg-background p-8 rounded-xl border border-outline/5 hover:shadow-md transition-all duration-300 flex flex-col justify-between" delay={0.3} y={30}>
+            <div className="bg-background p-8 rounded-xl border border-outline/5 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
                   <Heart size={20} />
@@ -143,10 +138,10 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
                 </p>
               </div>
               <div className="pt-6 text-[11px] font-mono uppercase text-primary/75 tracking-wider font-semibold">02 / Sostenibilità locale</div>
-            </FadeIn>
+            </div>
 
             {/* Step 3: Esperienza "A Quattro Mani" */}
-            <FadeIn className="bg-background p-8 rounded-xl border border-outline/5 hover:shadow-md transition-all duration-300 flex flex-col justify-between" delay={0.45} y={30}>
+            <div className="bg-background p-8 rounded-xl border border-outline/5 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
                   <Award size={20} />
@@ -157,7 +152,7 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
                 </p>
               </div>
               <div className="pt-6 text-[11px] font-mono uppercase text-primary/75 tracking-wider font-semibold">03 / Sinergia d'autore</div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>

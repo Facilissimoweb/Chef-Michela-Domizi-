@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Quote, Clock, Award, BookOpen, Heart, ShieldAlert, Sparkles } from 'lucide-react';
-import { FadeIn, AnimatedText } from './MotionComponents';
 
 // Resolve image URLs dynamically using Vite & ESModules standards
 const tortelliniImage = "https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&q=80&w=1200";
@@ -67,24 +66,20 @@ export default function BiographyView({ onBackToHome, onNavigateToContact }: Bio
               <span>La Cucina come Ponte tra Territorio e Memoria</span>
             </div>
             
-            <FadeIn delay={0.15} y={40}>
-              <h1 className="font-headline-xl text-headline-xl text-primary leading-[1.1] tracking-tight">
-                Michela Domizi
-              </h1>
-            </FadeIn>
+            <h1 className="font-headline-xl text-headline-xl text-primary leading-[1.1] tracking-tight">
+              Michela Domizi
+            </h1>
             <p className="font-headline-sm text-lg italic text-secondary leading-normal">
               “La ristorazione per me non è mai un punto di arrivo, ma un esercizio quotidiano di crescita.”
             </p>
             
             <div className="font-body-lg text-body-lg text-on-surface-variant space-y-6 leading-relaxed">
-              <AnimatedText 
-                text="La mia storia in cucina è un viaggio che ha radici profonde nella terra marchigiana. Nata nel 1976, sono cresciuta respirando il mondo dell’accoglienza all'interno dell'attività di famiglia a Civitanova Marche. È lì che ho imparato il valore dell’ospitalità e il linguaggio autentico del cibo."
-                className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed"
-              />
-              <AnimatedText 
-                text="Oggi, come Chef Ambassador dell'Università del Territorio Marchigiano, continuo a promuovere il valore della nostra terra. La mia visione è quella di un ritorno alle radici, a un gusto antico e autentico, che però sappia guardare al futuro con curiosità."
-                className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed text-primary font-semibold"
-              />
+              <p>
+                La mia storia in cucina è un viaggio che ha radici profonde nella terra marchigiana. Nata nel 1976, sono cresciuta respirando il mondo dell’accoglienza all'interno dell'attività di famiglia a Civitanova Marche. È lì che ho imparato il valore dell’ospitalità e il linguaggio autentico del cibo.
+              </p>
+              <p>
+                Oggi, come <span className="text-primary font-medium">Chef Ambassador dell'Università del Territorio Marchigiano</span>, continuo a promuovere il valore della nostra terra. La mia visione è quella di un ritorno alle radici, a un gusto antico e autentico, che però sappia guardare al futuro con curiosità.
+              </p>
             </div>
           </div>
           
