@@ -46,6 +46,7 @@ export default function App() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isCookiePolicyModalOpen, setIsCookiePolicyModalOpen] = useState(false);
   const [isCookieBannerOpen, setIsCookieBannerOpen] = useState(true);
   const [shareInfo, setShareInfo] = useState({ url: 'https://ais-pre-uxt5g2uxclhimjtes7ujes-205869432441.europe-west2.run.app', text: 'Scopri la cucina rurale contemporanea di Chef Michela Domizi nelle Marche!' });
 
@@ -930,14 +931,21 @@ export default function App() {
           {/* Bottom copyright barrier */}
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-xs text-surface/50 gap-4">
             <p>© 2026 Chef Michela Domizi. Tutti i diritti riservati. Ideato e Sviluppato nelle Marche.</p>
-            <div className="flex gap-6">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 justify-center md:justify-end items-center">
               <button 
                 onClick={() => setIsPrivacyModalOpen(true)}
                 className="hover:text-surface transition-colors bg-transparent border-0 p-0 cursor-pointer focus:outline-none"
               >
                 Informativa sulla Privacy
               </button>
-              <span>|</span>
+              <span className="text-surface/30">|</span>
+              <button 
+                onClick={() => setIsCookiePolicyModalOpen(true)}
+                className="hover:text-surface transition-colors bg-transparent border-0 p-0 cursor-pointer focus:outline-none"
+              >
+                Informativa sui Cookie
+              </button>
+              <span className="text-surface/30">|</span>
               <span>P.IVA 01234567890</span>
             </div>
           </div>
@@ -949,7 +957,7 @@ export default function App() {
 
       {/* Cookie Consent Banner */}
       {isCookieBannerOpen && (
-        <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-8 md:max-w-md z-40 bg-surface-container p-6 rounded-xl border border-outline/20 shadow-xl flex flex-col gap-3 transition-all duration-300">
+        <div className="fixed bottom-[100px] left-4 right-4 md:left-auto md:right-8 md:max-w-md md:bottom-[115px] z-45 bg-surface-container p-6 rounded-xl border border-outline/20 shadow-xl flex flex-col gap-3 transition-all duration-300">
           <div className="flex justify-between items-start">
             <span className="font-headline-sm text-sm text-primary uppercase tracking-wider block">Informativa sui Cookie</span>
             <button 
@@ -965,7 +973,7 @@ export default function App() {
           </p>
           <div className="flex justify-end gap-3 mt-1">
             <button 
-              onClick={() => setIsPrivacyModalOpen(true)}
+              onClick={() => setIsCookiePolicyModalOpen(true)}
               className="text-xs font-label-md text-secondary hover:text-primary transition-colors bg-transparent px-3 py-1.5 rounded-full"
             >
               Leggi Policy
@@ -1027,6 +1035,63 @@ export default function App() {
             <div className="border-t border-outline/10 pt-6 mt-6 flex justify-end">
               <button 
                 onClick={() => setIsPrivacyModalOpen(false)}
+                className="bg-primary text-surface px-6 py-2.5 rounded-full font-label-md text-label-md hover:bg-primary/95 transition-all focus:outline-none"
+              >
+                Chiudi
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Cookie Policy Modal */}
+      {isCookiePolicyModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-background/60 backdrop-blur-md" 
+            onClick={() => setIsCookiePolicyModalOpen(false)}
+          />
+          
+          {/* Modal Content */}
+          <div className="relative bg-surface border border-outline/20 p-8 md:p-10 max-w-lg w-full rounded-xl shadow-2xl overflow-y-auto max-h-[85vh] z-10 flex flex-col justify-between">
+            <div>
+              <div className="flex justify-between items-center border-b border-outline/10 pb-4 mb-6">
+                <h3 className="font-headline-sm text-headline-sm text-primary">Informativa sui Cookie</h3>
+                <button 
+                  onClick={() => setIsCookiePolicyModalOpen(false)} 
+                  className="text-secondary hover:text-primary transition-colors focus:outline-none"
+                  aria-label="Chiudi"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+              
+              <div className="font-body-md text-on-surface-variant text-sm space-y-4 overflow-y-auto pr-2 max-h-[50vh]">
+                <p className="font-bold text-primary">1. Cosa sono i Cookie</p>
+                <p>I cookie sono stringhe di testo di piccole dimensioni che i siti visitati dall'utente inviano al suo terminale, dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla successiva visita del medesimo utente.</p>
+                
+                <p className="font-bold text-primary">2. Tipologie di Cookie utilizzate da questo sito</p>
+                <p>Questo sito utilizza esclusivamente <strong>cookie tecnici ed essenziali</strong>. Non vengono utilizzati cookie di terze parti, cookie di marketing o cookie di profilazione pubblicitaria.</p>
+                <ul className="list-disc pl-5 space-y-1.5">
+                  <li><strong>Cookie di sessione</strong>: Necessari per garantire la normale navigazione e fruizione del sito (es. mantenere attiva la lingua o lo stato della sessione).</li>
+                  <li><strong>Cookie di preferenza</strong>: Memorizzano le selezioni dell'utente per migliorare l'esperienza (es. la scelta di accettare questa informativa).</li>
+                </ul>
+                
+                <p className="font-bold text-primary">3. Base Giuridica del Trattamento</p>
+                <p>L'uso di questi cookie tecnici è strettamente necessario al corretto funzionamento del sito e, ai sensi della direttiva europea ePrivacy e del Regolamento GDPR, non richiede il preventivo consenso esplicito dell'utente.</p>
+                
+                <p className="font-bold text-primary">4. Come disattivare i cookie dal browser</p>
+                <p>È possibile configurare il proprio browser per bloccare o rimuovere i cookie. Attenzione: la disattivazione totale dei cookie tecnici potrebbe compromettere alcune funzionalità essenziali del sito.</p>
+                
+                <p className="font-bold text-primary">5. Contatti</p>
+                <p>Per maggiori informazioni, chiarimenti o richieste relative alla gestione dei dati e dei cookie, vi invitiamo a contattare il Titolare all'indirizzo email: ciao@micheladomizi.com.</p>
+              </div>
+            </div>
+            
+            <div className="border-t border-outline/10 pt-6 mt-6 flex justify-end">
+              <button 
+                onClick={() => setIsCookiePolicyModalOpen(false)}
                 className="bg-primary text-surface px-6 py-2.5 rounded-full font-label-md text-label-md hover:bg-primary/95 transition-all focus:outline-none"
               >
                 Chiudi
