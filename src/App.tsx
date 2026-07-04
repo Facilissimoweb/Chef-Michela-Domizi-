@@ -34,7 +34,15 @@ export default function App() {
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
 
   const handleTranslate = (lang: string) => {
-    changeLanguage(lang);
+    if (lang === 'it') {
+      changeLanguage('it');
+      return;
+    }
+    if (typeof window !== 'undefined') {
+      const currentUrl = window.location.href;
+      const translateUrl = `https://translate.google.com/translate?sl=it&tl=${lang}&u=${encodeURIComponent(currentUrl)}`;
+      window.open(translateUrl, '_blank');
+    }
   };
 
   const [formState, setFormState] = useState({
@@ -386,7 +394,7 @@ export default function App() {
                 <div className="text-panel flex flex-col justify-center">
                   <p className="label mb-6">[ 00 ] BENVENUTI</p>
                   <h1 className="font-editorial text-5xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tight uppercase mb-8">
-                    <span className="italic normal-case font-editorial block text-3xl md:text-5xl lg:text-6xl text-[#8B5E3C] tracking-wide mb-3">Chef</span> Michela<br/>Domizi
+                    <span className="italic normal-case font-editorial block text-[#8B5E3C] tracking-wide mb-3" style={{ fontSize: "49px" }}>Chef</span> Michela<br/>Domizi
                   </h1>
                   <p className="quote text-xl md:text-2xl font-editorial italic text-[#8B5E3C] leading-relaxed mb-8">
                     “La ristorazione per me non è mai un punto di arrivo, ma un esercizio quotidiano di crescita.”

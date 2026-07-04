@@ -126,7 +126,7 @@ export default function GeminiChat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.95 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed bottom-36 right-6 z-50 w-[90vw] sm:w-[420px] h-[550px] bg-[#F8F7F4] border border-[#1A1A1A]/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col font-sans text-[#1A1A1A]"
+            className="fixed inset-0 md:inset-auto md:bottom-36 md:right-6 z-50 w-full h-full md:w-[420px] md:h-[550px] bg-[#F8F7F4] md:border md:border-[#1A1A1A]/10 md:rounded-2xl shadow-2xl overflow-hidden flex flex-col font-sans text-[#1A1A1A]"
             id="chef-chat-panel"
           >
             {/* Header */}
