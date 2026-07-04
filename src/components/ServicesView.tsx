@@ -77,16 +77,16 @@ export default function ServicesView({ onBackToHome, onNavigateToContact }: Serv
       </section>
 
       {/* Services presentation with minimalist layouts */}
-      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 md:px-12">
+      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
           <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 02 ] CATALOGO SERVIZI</p>
-          <h2 className="font-editorial text-4xl md:text-5xl uppercase text-[#1A1A1A]">Le mie competenze al tuo servizio</h2>
+          <h2 className="font-editorial text-4xl lg:text-5xl uppercase text-[#1A1A1A]">Le mie competenze al tuo servizio</h2>
           <div className="w-16 h-[1.5px] bg-[#8B5E3C] mx-auto"></div>
         </div>
 
         <div className="space-y-24">
           {/* Service 1: Chef a Domicilio di Lusso */}
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="aspect-[4/3] border-[1.5px] border-[#1A1A1A] overflow-hidden bg-[#F4ECE7]">
               <img 
                 src={chefDomicilioImage} 
@@ -97,7 +97,7 @@ export default function ServicesView({ onBackToHome, onNavigateToContact }: Serv
             </div>
             <div className="space-y-6">
               <span className="font-mono-design text-[10px] uppercase tracking-wider text-[#8B5E3C] font-semibold">01 / ESPERIENZA ESCLUSIVA</span>
-              <h3 className="font-editorial text-2xl md:text-3xl uppercase text-[#1A1A1A] leading-tight">Chef a Domicilio ed Eventi Privati</h3>
+              <h3 className="font-editorial text-2xl lg:text-3xl uppercase text-[#1A1A1A] leading-tight">Chef a Domicilio ed Eventi Privati</h3>
               <p className="font-sans-design text-sm text-[#1A1A1A]/70 leading-relaxed">
                 Porto l’alta cucina rurale direttamente nel cuore della tua casa. Che si tratti di una cena romantica, di un pranzo di famiglia intimo o di una ricorrenza speciale, mi occupo di ogni fase: ideazione del menu personalizzato su base stagionale, spesa etica presso produttori marchigiani, preparazione sul posto e servizio impeccabile.
               </p>
@@ -110,10 +110,10 @@ export default function ServicesView({ onBackToHome, onNavigateToContact }: Serv
           </div>
 
           {/* Service 2: Consulenza per Aperture e Rilancio */}
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            <div className="order-2 md:order-1 space-y-6">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="order-2 lg:order-1 space-y-6">
               <span className="font-mono-design text-[10px] uppercase tracking-wider text-[#8B5E3C] font-semibold">02 / START-UP & CONSULENZA</span>
-              <h3 className="font-editorial text-2xl md:text-3xl uppercase text-[#1A1A1A] leading-tight">Consulenza per Gastronomie e Ristorazione</h3>
+              <h3 className="font-editorial text-2xl lg:text-3xl uppercase text-[#1A1A1A] leading-tight">Consulenza per Gastronomie e Ristorazione</h3>
               <p className="font-sans-design text-sm text-[#1A1A1A]/70 leading-relaxed">
                 Grazie a oltre 30 anni di operatività nel settore, accompagno imprenditori e ristoratori nella definizione di concept di successo, riorganizzazione dei menu, standardizzazione delle ricette e nell'organizzazione efficiente della brigata di cucina. Un approccio concreto orientato alla redditività e alla sostenibilità.
               </p>
@@ -123,7 +123,7 @@ export default function ServicesView({ onBackToHome, onNavigateToContact }: Serv
                 <li className="flex items-center gap-2"><Check size={14} className="text-[#8B5E3C]" /> Formazione dello staff e manualistica dei piatti</li>
               </ul>
             </div>
-            <div className="order-1 md:order-2 aspect-[4/3] border-[1.5px] border-[#1A1A1A] overflow-hidden bg-[#F4ECE7]">
+            <div className="order-1 lg:order-2 aspect-[4/3] border-[1.5px] border-[#1A1A1A] overflow-hidden bg-[#F4ECE7]">
               <img 
                 src={consultingImage} 
                 alt="Consulenza culinaria strategica" 
@@ -134,7 +134,7 @@ export default function ServicesView({ onBackToHome, onNavigateToContact }: Serv
           </div>
 
           {/* Service 3: Chef Ambassador e Valorizzazione */}
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="aspect-[4/3] border-[1.5px] border-[#1A1A1A] overflow-hidden bg-[#F4ECE7]">
               <img 
                 src={ambassadorImage} 
@@ -145,9 +145,9 @@ export default function ServicesView({ onBackToHome, onNavigateToContact }: Serv
             </div>
             <div className="space-y-6">
               <span className="font-mono-design text-[10px] uppercase tracking-wider text-[#8B5E3C] font-semibold">03 / ISTITUZIONALE & DIVULGAZIONE</span>
-              <h3 className="font-editorial text-2xl md:text-3xl uppercase text-[#1A1A1A] leading-tight">Chef Ambassador e Valorizzazione Territoriale</h3>
+              <h3 className="font-editorial text-2xl lg:text-3xl uppercase text-[#1A1A1A] leading-tight">Chef Ambassador e Valorizzazione Territoriale</h3>
               <p className="font-sans-design text-sm text-[#1A1A1A]/70 leading-relaxed">
-                In qualità di Chef Ambassador dell'Università del Territorio Marchigiano, collaboro attivamente con enti pubblici, consorzi e istituzioni per promuovere le ricchezze culinarie locali. Svolgo conferenze, show-cooking educativi e progetti di ricerca gastronomica per preservare la biodiversità.
+                In qualità di Chef Ambassador dell'Università del Territorio Marchigiano, collaboro attivamente con enti pubblici, consorzi e istituzioni per promoverne le ricchezze culinarie locali. Svolgo conferenze, show-cooking educativi e progetti di ricerca gastronomica per preservare la biodiversità.
               </p>
               <ul className="space-y-2.5 pt-4 border-t border-[#1A1A1A]/10 font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/70">
                 <li className="flex items-center gap-2"><Check size={14} className="text-[#8B5E3C]" /> Show cooking e laboratori di pasta fresca</li>
@@ -160,11 +160,11 @@ export default function ServicesView({ onBackToHome, onNavigateToContact }: Serv
       </section>
 
       {/* Philosophy Callout Card */}
-      <section className="py-24 bg-[#1A1A1A] text-[#F8F7F4] text-center px-6 md:px-12">
+      <section className="py-24 bg-[#1A1A1A] text-[#F8F7F4] text-center px-6 lg:px-12">
         <div className="max-w-4xl mx-auto space-y-8">
           <p className="font-mono-design text-xs uppercase tracking-[0.2em] text-[#8B5E3C]">L'ETICA DEL GUSTO</p>
-          <h3 className="font-editorial text-3xl md:text-5xl uppercase leading-tight">Un Patto d'Onore con i Produttori Marchigiani</h3>
-          <p className="font-sans-design text-sm md:text-base text-[#F8F7F4]/80 leading-relaxed max-w-2xl mx-auto">
+          <h3 className="font-editorial text-3xl lg:text-5xl uppercase leading-tight">Un Patto d'Onore con i Produttori Marchigiani</h3>
+          <p className="font-sans-design text-sm lg:text-base text-[#F8F7F4]/80 leading-relaxed max-w-2xl mx-auto">
             Rifiuto qualsiasi ingrediente proveniente da allevamenti intensivi o da colture sature di fitofarmaci industriali. Seleziono personalmente i produttori uno ad uno: è l'unico modo per preservare la salute dei miei ospiti e l'anima delle nostre colline.
           </p>
           <div className="h-[1.5px] bg-[#8B5E3C] w-16 mx-auto"></div>
@@ -172,9 +172,9 @@ export default function ServicesView({ onBackToHome, onNavigateToContact }: Serv
       </section>
 
       {/* Call to action at bottom */}
-      <section className="py-24 px-6 md:px-12 max-w-5xl mx-auto text-center space-y-8">
-        <h2 className="font-editorial text-3xl md:text-5xl uppercase text-[#1A1A1A]">Vuoi Collaborare a un Progetto Gastronomico?</h2>
-        <p className="font-sans-design text-[#1A1A1A]/70 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+      <section className="py-24 px-6 lg:px-12 max-w-5xl mx-auto text-center space-y-8">
+        <h2 className="font-editorial text-3xl lg:text-5xl uppercase text-[#1A1A1A]">Vuoi Collaborare a un Progetto Gastronomico?</h2>
+        <p className="font-sans-design text-[#1A1A1A]/70 max-w-xl mx-auto text-sm lg:text-base leading-relaxed">
           Discutiamo insieme l'evento privato dei tuoi sogni o studiamo un menu vincente per la tua attività commerciale di ristorazione.
         </p>
         <div className="flex flex-wrap gap-4 justify-center pt-4">

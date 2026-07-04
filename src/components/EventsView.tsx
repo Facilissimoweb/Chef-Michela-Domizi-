@@ -73,8 +73,8 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-24 px-6 md:px-12 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section className="py-24 px-6 lg:px-12 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <div className="aspect-[4/3] border-[1.5px] border-[#1A1A1A] overflow-hidden bg-[#F4ECE7]">
               <img 
@@ -84,7 +84,7 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] flex items-center justify-center p-6 hidden md:flex">
+            <div className="absolute -bottom-6 -right-6 w-44 h-44 bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] flex items-center justify-center p-6 hidden lg:flex">
               <p className="text-center font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A] leading-tight">
                 Direzione Gastronomica Sartoriale
               </p>
@@ -92,7 +92,7 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
           </div>
           <div className="space-y-6">
             <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 02 ] STRATEGIA</p>
-            <h2 className="font-editorial text-4xl md:text-5xl uppercase tracking-tight text-[#1A1A1A]">La Sostanza nel Servizio</h2>
+            <h2 className="font-editorial text-4xl lg:text-5xl uppercase tracking-tight text-[#1A1A1A]">La Sostanza nel Servizio</h2>
             <p className="font-sans-design text-sm md:text-base text-[#1A1A1A]/70 leading-relaxed">
               Il mio obiettivo è disegnare un'atmosfera coerente. Ogni dettaglio della tavola, l'abbinamento dei vini autoctoni e la successione dei piatti sono coordinati con rigore millimetrico per rispettare la solennità del momento.
             </p>
@@ -104,14 +104,14 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
       </section>
 
       {/* How it works Section */}
-      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 md:px-12">
+      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
           <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 03 ] COME FUNZIONA</p>
-          <h2 className="font-editorial text-4xl md:text-5xl uppercase text-[#1A1A1A]">Il Nostro Metodo Operativo</h2>
+          <h2 className="font-editorial text-4xl lg:text-5xl uppercase text-[#1A1A1A]">Il Nostro Metodo Operativo</h2>
           <div className="w-16 h-[1.5px] bg-[#8B5E3C] mx-auto"></div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Step 1 */}
           <div className="border-[1.5px] border-[#1A1A1A] p-8 flex flex-col justify-between">
             <div>
@@ -157,26 +157,26 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
       </section>
 
       {/* Expectations Section */}
-      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
             <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 04 ] MATERIE PRIME</p>
-            <h2 className="font-editorial text-4xl md:text-5xl uppercase tracking-tight text-[#1A1A1A]">Cosa Aspettarsi Sulla Tavola</h2>
+            <h2 className="font-editorial text-4xl lg:text-5xl uppercase tracking-tight text-[#1A1A1A]">Cosa Aspettarsi Sulla Tavola</h2>
             <p className="font-sans-design text-sm md:text-base text-[#1A1A1A]/70 leading-relaxed">
               Il sapore pulito del biologico, la morbidezza delle carni allevate allo stato semibrado, l'eleganza di un olio d'oliva extravergine monocultivar spremuto a freddo nelle colline maceratesi.
             </p>
-            <div className="space-y-4 pt-6 border-t border-[#1A1A1A]/10">
+            <div className="space-y-4 pt-6 border-t border-[#1A1A1A]/10 font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/70">
               <div className="flex items-center gap-3">
                 <Check size={16} className="text-[#8B5E3C]" />
-                <span className="font-mono-design text-[10px] uppercase tracking-widest text-[#1A1A1A]/70">Zafferano Puro di Matelica e Tartufo Nero</span>
+                <span className="tracking-widest text-[#1A1A1A]/70">Zafferano Puro di Matelica e Tartufo Nero</span>
               </div>
               <div className="flex items-center gap-3">
                 <Check size={16} className="text-[#8B5E3C]" />
-                <span className="font-mono-design text-[10px] uppercase tracking-widest text-[#1A1A1A]/70">Verdure selvatiche ed erbe aromatiche colte all'alba</span>
+                <span className="tracking-widest text-[#1A1A1A]/70">Verdure selvatiche ed erbe aromatiche colte all'alba</span>
               </div>
               <div className="flex items-center gap-3">
                 <Check size={16} className="text-[#8B5E3C]" />
-                <span className="font-mono-design text-[10px] uppercase tracking-widest text-[#1A1A1A]/70">Cacciagione dell'entroterra ed eccellenze ittiche dell'Adriatico</span>
+                <span className="tracking-widest text-[#1A1A1A]/70">Cacciagione dell'entroterra ed eccellenze ittiche dell'Adriatico</span>
               </div>
             </div>
           </div>
@@ -202,8 +202,8 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
       </section>
 
       {/* Call to action at bottom */}
-      <section className="py-24 px-6 md:px-12 max-w-5xl mx-auto text-center space-y-8">
-        <h2 className="font-editorial text-3xl md:text-5xl uppercase text-[#1A1A1A]">Pronto a Creare un Ricordo Meraviglioso?</h2>
+      <section className="py-24 px-6 lg:px-12 max-w-5xl mx-auto text-center space-y-8">
+        <h2 className="font-editorial text-3xl lg:text-5xl uppercase text-[#1A1A1A]">Pronto a Creare un Ricordo Meraviglioso?</h2>
         <p className="font-sans-design text-[#1A1A1A]/70 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
           Pianifichiamo ogni dettaglio del tuo prossimo evento esclusivo nelle Marche. Richiedi subito una disponibilità o un preventivo personalizzato.
         </p>
