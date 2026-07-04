@@ -425,9 +425,9 @@ export default function App() {
                     Soluzioni su misura per clienti esigenti e professionisti del settore che desiderano affinare il proprio racconto gastronomico.
                   </p>
                 </div>
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full justify-items-center">
                   {/* Service 1 */}
-                  <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-8 reveal flex flex-col justify-between">
+                  <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-8 reveal flex flex-col justify-between w-full max-w-md md:max-w-none mx-auto">
                     <div>
                       <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6">
                         <UtensilsCrossed size={20} className="text-[#1A1A1A]" />
@@ -450,7 +450,7 @@ export default function App() {
                     </ul>
                   </div>
                   {/* Service 2 */}
-                  <div className="bg-[#1A1A1A] text-[#F8F7F4] p-8 border-[1.5px] border-[#1A1A1A] reveal flex flex-col justify-between">
+                  <div className="bg-[#1A1A1A] text-[#F8F7F4] p-8 border-[1.5px] border-[#1A1A1A] reveal flex flex-col justify-between w-full max-w-md md:max-w-none mx-auto">
                     <div>
                       <div className="w-12 h-12 bg-[#F8F7F4]/10 border border-[#F8F7F4]/20 flex items-center justify-center mb-6">
                         <Briefcase size={20} className="text-[#F8F7F4]" />
@@ -473,7 +473,7 @@ export default function App() {
                     </ul>
                   </div>
                   {/* Service 3 */}
-                  <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-8 reveal flex flex-col justify-between">
+                  <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-8 reveal flex flex-col justify-between w-full max-w-md md:max-w-none mx-auto">
                     <div>
                       <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6">
                         <NotebookPen size={20} className="text-[#1A1A1A]" />
