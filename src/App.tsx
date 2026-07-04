@@ -4,17 +4,40 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Menu, X, UtensilsCrossed, Briefcase, NotebookPen, Check, MapPin, Mail, ArrowRight, ArrowLeft, Quote, BookOpen, Clock, Share2, Facebook, Linkedin, Instagram } from 'lucide-react';
+import { Menu, X, UtensilsCrossed, Briefcase, NotebookPen, Check, MapPin, Mail, ArrowRight, ArrowLeft, Quote, BookOpen, Clock, Share2, Facebook, Linkedin, Instagram, Languages, ChevronDown } from 'lucide-react';
 import BiographyView from './components/BiographyView';
 import ServicesView from './components/ServicesView';
 import EventsView from './components/EventsView';
 import ConversionForm from './components/ConversionForm';
 import StickyFooter from './components/StickyFooter';
 
+const languages = [
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
+  { code: 'pt', name: 'Português', flag: '🇵🇹' },
+  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+  { code: 'zh-CN', name: '简体中文', flag: '🇨🇳' },
+  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+];
+
 export default function App() {
   const [activeView, setActiveView] = useState<'home' | 'bio' | 'services' | 'eventi'>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasShadow, setHasShadow] = useState(false);
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+
+  const handleTranslate = (lang: string) => {
+    if (typeof window !== 'undefined') {
+      const currentUrl = window.location.href;
+      const translateUrl = `https://translate.google.com/translate?sl=it&tl=${lang}&u=${encodeURIComponent(currentUrl)}`;
+      window.open(translateUrl, '_blank');
+    }
+  };
+
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -168,57 +191,129 @@ export default function App() {
             CHEF MICHELA DOMIZI
           </div>
 
-          {/* Desktop Navigation Links */}
-          <ul className="hidden md:flex items-center gap-8">
-            <li>
-              <button 
-                className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'home' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
-                onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              >
-                Home Page
-              </button>
-            </li>
-            <li>
-              <button 
-                className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'bio' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
-                onClick={() => { setActiveView('bio'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              >
-                Biografia
-              </button>
-            </li>
-            <li>
-              <button 
-                className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'services' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
-                onClick={() => { setActiveView('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              >
-                Servizi
-              </button>
-            </li>
-            <li>
-              <button 
-                className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'eventi' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
-                onClick={() => { setActiveView('eventi'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              >
-                Eventi
-              </button>
-            </li>
-            <li>
-              <button 
-                className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-[#1A1A1A]/60 hover:text-[#1A1A1A] transition-colors duration-200 text-left"
-                onClick={navigateToContactSection}
-              >
-                Contatti
-              </button>
-            </li>
-          </ul>
+          {/* Desktop Navigation & Translation Container */}
+          <div className="hidden md:flex items-center gap-8">
+            <ul className="flex items-center gap-8">
+              <li>
+                <button 
+                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'home' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                  onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                >
+                  Home Page
+                </button>
+              </li>
+              <li>
+                <button 
+                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'bio' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                  onClick={() => { setActiveView('bio'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                >
+                  Biografia
+                </button>
+              </li>
+              <li>
+                <button 
+                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'services' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                  onClick={() => { setActiveView('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                >
+                  Servizi
+                </button>
+              </li>
+              <li>
+                <button 
+                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'eventi' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                  onClick={() => { setActiveView('eventi'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                >
+                  Eventi
+                </button>
+              </li>
+              <li>
+                <button 
+                  className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-[#1A1A1A]/60 hover:text-[#1A1A1A] transition-colors duration-200 text-left"
+                  onClick={navigateToContactSection}
+                >
+                  Contatti
+                </button>
+              </li>
+            </ul>
 
-          {/* Mobile Menu Toggle Button */}
-          <button 
-            className="md:hidden text-[#1A1A1A] p-1 focus:outline-none"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+            {/* Divider */}
+            <div className="h-5 w-[1.5px] bg-[#1A1A1A]/20"></div>
+            
+            {/* Translation Widget (Desktop) */}
+            <div className="relative" id="translation-widget-desktop">
+              <button 
+                onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                className="flex items-center gap-1.5 bg-[#1A1A1A]/5 hover:bg-[#1A1A1A]/10 px-3 py-1.5 rounded-full border border-[#1A1A1A]/10 text-xs text-[#1A1A1A] font-mono-design uppercase tracking-wider transition-all cursor-pointer"
+                title="Traduci"
+              >
+                <Languages size={14} className="text-[#1A1A1A]" />
+                <span>Traduci</span>
+                <ChevronDown size={11} className={`transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {isLangDropdownOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setIsLangDropdownOpen(false)}></div>
+                  <div className="absolute right-0 mt-2 w-48 bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] rounded-none shadow-[4px_4px_0px_0px_#1A1A1A] py-1.5 z-50 max-h-80 overflow-y-auto">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          handleTranslate(lang.code);
+                          setIsLangDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-2 text-left text-xs font-mono-design uppercase tracking-wider hover:bg-[#1A1A1A]/5 text-[#1A1A1A] transition-colors cursor-pointer"
+                      >
+                        <span className="text-lg leading-none">{lang.flag}</span>
+                        <span>{lang.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile Right Container */}
+          <div className="flex items-center gap-3 md:hidden">
+            {/* Translation Widget (Mobile) */}
+            <div className="relative" id="translation-widget-mobile">
+              <button 
+                onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                className="flex items-center justify-center bg-[#1A1A1A]/5 hover:bg-[#1A1A1A]/10 w-9 h-9 rounded-full border border-[#1A1A1A]/10 text-[#1A1A1A] transition-all cursor-pointer"
+                title="Traduci"
+              >
+                <Languages size={16} />
+              </button>
+              {isLangDropdownOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setIsLangDropdownOpen(false)}></div>
+                  <div className="absolute right-0 mt-2 w-44 bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] rounded-none shadow-[3px_3px_0px_0px_#1A1A1A] py-1 z-50 max-h-60 overflow-y-auto">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          handleTranslate(lang.code);
+                          setIsLangDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center gap-2.5 px-3 py-2 text-left text-[11px] font-mono-design uppercase tracking-wider hover:bg-[#1A1A1A]/5 text-[#1A1A1A] transition-colors cursor-pointer"
+                      >
+                        <span className="text-base leading-none">{lang.flag}</span>
+                        <span>{lang.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Mobile Menu Toggle Button */}
+            <button 
+              className="text-[#1A1A1A] p-1 focus:outline-none"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </nav>
 
         {/* Mobile Menu Drawer */}
@@ -254,6 +349,25 @@ export default function App() {
             >
               Contatti
             </button>
+
+            {/* Translation block in mobile drawer */}
+            <div className="mt-4 pt-4 border-t border-[#1A1A1A]/10 flex flex-col gap-2">
+              <span className="font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 flex items-center gap-1.5">
+                <Languages size={12} /> TRADUZIONE / GOOGLE TRANSLATE
+              </span>
+              <div className="grid grid-cols-2 gap-2 mt-1">
+                {languages.map((lang) => (
+                  <button 
+                    key={lang.code}
+                    onClick={() => { handleTranslate(lang.code); setIsMobileMenuOpen(false); }} 
+                    className="flex items-center gap-2 font-mono-design text-[10px] uppercase tracking-wider bg-[#1A1A1A]/5 border border-[#1A1A1A]/15 px-2.5 py-1.5 rounded-md hover:bg-[#1A1A1A]/10 cursor-pointer justify-start"
+                  >
+                    <span className="text-base leading-none">{lang.flag}</span>
+                    <span className="text-[#1A1A1A]/70 truncate">{lang.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         )}
 
