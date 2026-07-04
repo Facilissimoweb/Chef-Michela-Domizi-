@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowRight, Check, Calendar, Heart, Award, UtensilsCrossed } from 'lucide-react';
+import { useTranslation } from '../context/TranslationContext';
 
 interface EventsViewProps {
   onBackToHome: () => void;
@@ -7,6 +8,8 @@ interface EventsViewProps {
 }
 
 export default function EventsView({ onBackToHome, onNavigateToContact }: EventsViewProps) {
+  const { t } = useTranslation();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
@@ -15,8 +18,8 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
     <div className="bg-[#F8F7F4] text-[#1A1A1A] min-h-screen">
       {/* Editorial View Header */}
       <div className="view-header border-b border-[#1A1A1A]/10">
-        <span className="label">Eventi / No. 03</span>
-        <span className="label">Michela Domizi Chef — +30 Anni di Esperienza Culinaria</span>
+        <span className="label">{t("Eventi / No. 03")}</span>
+        <span className="label">{t("Michela Domizi Chef — +30 Anni di Esperienza Culinaria")}</span>
       </div>
 
       {/* Intro Hero Split Section */}

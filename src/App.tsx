@@ -10,6 +10,7 @@ import ServicesView from './components/ServicesView';
 import EventsView from './components/EventsView';
 import ConversionForm from './components/ConversionForm';
 import StickyFooter from './components/StickyFooter';
+import { useTranslation } from './context/TranslationContext';
 
 const languages = [
   { code: 'it', name: 'Italiano', flag: '🇮🇹' },
@@ -25,17 +26,14 @@ const languages = [
 ];
 
 export default function App() {
+  const { currentLanguage, changeLanguage, t, isTranslating, translationError } = useTranslation();
   const [activeView, setActiveView] = useState<'home' | 'bio' | 'services' | 'eventi'>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasShadow, setHasShadow] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
 
   const handleTranslate = (lang: string) => {
-    if (typeof window !== 'undefined') {
-      const currentUrl = window.location.href;
-      const translateUrl = `https://translate.google.com/translate?sl=it&tl=${lang}&u=${encodeURIComponent(currentUrl)}`;
-      window.open(translateUrl, '_blank');
-    }
+    changeLanguage(lang);
   };
 
   const [formState, setFormState] = useState({
@@ -200,7 +198,7 @@ export default function App() {
                   className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'home' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
                   onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 >
-                  Home Page
+                  {t("Home Page")}
                 </button>
               </li>
               <li>
@@ -208,7 +206,7 @@ export default function App() {
                   className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'bio' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
                   onClick={() => { setActiveView('bio'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 >
-                  Biografia
+                  {t("Biografia")}
                 </button>
               </li>
               <li>
@@ -216,7 +214,7 @@ export default function App() {
                   className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'services' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
                   onClick={() => { setActiveView('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 >
-                  Servizi
+                  {t("Servizi")}
                 </button>
               </li>
               <li>
@@ -224,7 +222,7 @@ export default function App() {
                   className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'eventi' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
                   onClick={() => { setActiveView('eventi'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 >
-                  Eventi
+                  {t("Eventi")}
                 </button>
               </li>
               <li>
@@ -232,7 +230,7 @@ export default function App() {
                   className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-[#1A1A1A]/60 hover:text-[#1A1A1A] transition-colors duration-200 text-left"
                   onClick={navigateToContactSection}
                 >
-                  Contatti
+                  {t("Contatti")}
                 </button>
               </li>
             </ul>
@@ -245,10 +243,10 @@ export default function App() {
               <button 
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                 className="flex items-center gap-1.5 bg-[#1A1A1A]/5 hover:bg-[#1A1A1A]/10 px-3 py-1.5 rounded-full border border-[#1A1A1A]/10 text-xs text-[#1A1A1A] font-mono-design uppercase tracking-wider transition-all cursor-pointer"
-                title="Traduci"
+                title={t("Traduci")}
               >
-                <Languages size={14} className="text-[#1A1A1A]" />
-                <span>Traduci</span>
+                <Languages size={14} className={`text-[#1A1A1A] ${isTranslating ? 'animate-spin text-[#8B5E3C]' : ''}`} />
+                <span>{isTranslating ? `${t("Traduci")}...` : t("Traduci")}</span>
                 <ChevronDown size={11} className={`transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               {isLangDropdownOpen && (
@@ -262,7 +260,7 @@ export default function App() {
                           handleTranslate(lang.code);
                           setIsLangDropdownOpen(false);
                         }}
-                        className="w-full flex items-center gap-3 px-4 py-2 text-left text-xs font-mono-design uppercase tracking-wider hover:bg-[#1A1A1A]/5 text-[#1A1A1A] transition-colors cursor-pointer"
+                        className={`w-full flex items-center gap-3 px-4 py-2 text-left text-xs font-mono-design uppercase tracking-wider hover:bg-[#1A1A1A]/5 transition-colors cursor-pointer ${currentLanguage === lang.code ? 'bg-[#1A1A1A]/10 font-bold' : 'text-[#1A1A1A]'}`}
                       >
                         <span className="text-lg leading-none">{lang.flag}</span>
                         <span>{lang.name}</span>
@@ -280,10 +278,10 @@ export default function App() {
             <div className="relative" id="translation-widget-mobile">
               <button 
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                className="flex items-center justify-center bg-[#1A1A1A]/5 hover:bg-[#1A1A1A]/10 w-9 h-9 rounded-full border border-[#1A1A1A]/10 text-[#1A1A1A] transition-all cursor-pointer"
-                title="Traduci"
+                className={`flex items-center justify-center bg-[#1A1A1A]/5 hover:bg-[#1A1A1A]/10 w-9 h-9 rounded-full border border-[#1A1A1A]/10 text-[#1A1A1A] transition-all cursor-pointer ${isTranslating ? 'animate-pulse border-[#8B5E3C]' : ''}`}
+                title={t("Traduci")}
               >
-                <Languages size={16} />
+                <Languages size={16} className={isTranslating ? 'animate-spin text-[#8B5E3C]' : ''} />
               </button>
               {isLangDropdownOpen && (
                 <>
@@ -296,7 +294,7 @@ export default function App() {
                           handleTranslate(lang.code);
                           setIsLangDropdownOpen(false);
                         }}
-                        className="w-full flex items-center gap-2.5 px-3 py-2 text-left text-[11px] font-mono-design uppercase tracking-wider hover:bg-[#1A1A1A]/5 text-[#1A1A1A] transition-colors cursor-pointer"
+                        className={`w-full flex items-center gap-2.5 px-3 py-2 text-left text-[11px] font-mono-design uppercase tracking-wider hover:bg-[#1A1A1A]/5 transition-colors cursor-pointer ${currentLanguage === lang.code ? 'bg-[#1A1A1A]/10 font-bold' : 'text-[#1A1A1A]'}`}
                       >
                         <span className="text-base leading-none">{lang.flag}</span>
                         <span>{lang.name}</span>
@@ -324,47 +322,47 @@ export default function App() {
               className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left ${activeView === 'home' ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]/60'}`}
               onClick={() => { setActiveView('home'); setIsMobileMenuOpen(false); }}
             >
-              Home Page
+              {t("Home Page")}
             </button>
             <button 
               className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left ${activeView === 'bio' ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]/60'}`}
               onClick={() => { setActiveView('bio'); setIsMobileMenuOpen(false); }}
             >
-              Biografia
+              {t("Biografia")}
             </button>
             <button 
               className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left ${activeView === 'services' ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]/60'}`}
               onClick={() => { setActiveView('services'); setIsMobileMenuOpen(false); }}
             >
-              Servizi
+              {t("Servizi")}
             </button>
             <button 
               className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left ${activeView === 'eventi' ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]/60'}`}
               onClick={() => { setActiveView('eventi'); setIsMobileMenuOpen(false); }}
             >
-              Eventi
+              {t("Eventi")}
             </button>
             <button 
               className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left text-[#1A1A1A]/60"
               onClick={() => { navigateToContactSection(); setIsMobileMenuOpen(false); }}
             >
-              Contatti
+              {t("Contatti")}
             </button>
 
             {/* Translation block in mobile drawer */}
             <div className="mt-4 pt-4 border-t border-[#1A1A1A]/10 flex flex-col gap-2">
               <span className="font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 flex items-center gap-1.5">
-                <Languages size={12} /> TRADUZIONE / GOOGLE TRANSLATE
+                <Languages size={12} className={isTranslating ? 'animate-spin text-[#8B5E3C]' : ''} /> {t("Traduci")} / GEMINI AI
               </span>
               <div className="grid grid-cols-2 gap-2 mt-1">
                 {languages.map((lang) => (
                   <button 
                     key={lang.code}
                     onClick={() => { handleTranslate(lang.code); setIsMobileMenuOpen(false); }} 
-                    className="flex items-center gap-2 font-mono-design text-[10px] uppercase tracking-wider bg-[#1A1A1A]/5 border border-[#1A1A1A]/15 px-2.5 py-1.5 rounded-md hover:bg-[#1A1A1A]/10 cursor-pointer justify-start"
+                    className={`flex items-center gap-2 font-mono-design text-[10px] uppercase tracking-wider border px-2.5 py-1.5 rounded-md cursor-pointer justify-start ${currentLanguage === lang.code ? 'bg-[#1A1A1A] border-[#1A1A1A] text-[#F8F7F4]' : 'bg-[#1A1A1A]/5 border-[#1A1A1A]/15 text-[#1A1A1A] hover:bg-[#1A1A1A]/10'}`}
                   >
                     <span className="text-base leading-none">{lang.flag}</span>
-                    <span className="text-[#1A1A1A]/70 truncate">{lang.name}</span>
+                    <span className="truncate">{lang.name}</span>
                   </button>
                 ))}
               </div>
@@ -387,7 +385,7 @@ export default function App() {
                 <div className="text-panel flex flex-col justify-center">
                   <p className="label mb-6">[ 00 ] BENVENUTI</p>
                   <h1 className="font-editorial text-5xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tight uppercase mb-8">
-                    Michela<br/>Domizi
+                    <span className="italic normal-case font-editorial block text-3xl md:text-5xl lg:text-6xl text-[#8B5E3C] tracking-wide mb-3">Chef</span> Michela<br/>Domizi
                   </h1>
                   <p className="quote text-xl md:text-2xl font-editorial italic text-[#8B5E3C] leading-relaxed mb-8">
                     “La ristorazione per me non è mai un punto di arrivo, ma un esercizio quotidiano di crescita.”

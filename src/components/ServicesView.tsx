@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowRight, UtensilsCrossed, Award, Check, Sparkles } from 'lucide-react';
+import { useTranslation } from '../context/TranslationContext';
 
 const chefDomicilioImage = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1200";
 const consultingImage = "https://images.unsplash.com/photo-1574484284002-982da33611f7?auto=format&fit=crop&q=80&w=1200";
@@ -11,6 +12,8 @@ interface ServicesViewProps {
 }
 
 export default function ServicesView({ onBackToHome, onNavigateToContact }: ServicesViewProps) {
+  const { t } = useTranslation();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
@@ -19,8 +22,8 @@ export default function ServicesView({ onBackToHome, onNavigateToContact }: Serv
     <div className="bg-[#F8F7F4] text-[#1A1A1A] min-h-screen">
       {/* Editorial View Header */}
       <div className="view-header border-b border-[#1A1A1A]/10">
-        <span className="label">Servizi / No. 02</span>
-        <span className="label">Michela Domizi Chef — +30 Anni di Esperienza Culinaria</span>
+        <span className="label">{t("Servizi / No. 02")}</span>
+        <span className="label">{t("Michela Domizi Chef — +30 Anni di Esperienza Culinaria")}</span>
       </div>
 
       {/* Intro Hero Split Section */}

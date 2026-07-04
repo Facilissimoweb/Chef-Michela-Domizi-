@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Quote, Heart, Award, UtensilsCrossed, Sparkles } from 'lucide-react';
+import { useTranslation } from '../context/TranslationContext';
 
 const tortelliniImage = "https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&q=80&w=1200";
 const collineImage = "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&q=80&w=1200";
@@ -10,6 +11,8 @@ interface BiographyViewProps {
 }
 
 export default function BiographyView({ onBackToHome, onNavigateToContact }: BiographyViewProps) {
+  const { t } = useTranslation();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
@@ -18,8 +21,8 @@ export default function BiographyView({ onBackToHome, onNavigateToContact }: Bio
     <div className="bg-[#F8F7F4] text-[#1A1A1A] min-h-screen">
       {/* Editorial View Header */}
       <div className="view-header border-b border-[#1A1A1A]/10">
-        <span className="label">Biografia / No. 01</span>
-        <span className="label">Michela Domizi Chef — +30 Anni di Esperienza</span>
+        <span className="label">{t("Biografia / No. 01")}</span>
+        <span className="label">{t("Michela Domizi Chef — +30 Anni di Esperienza")}</span>
       </div>
 
       {/* Hero Split Grid Section */}
