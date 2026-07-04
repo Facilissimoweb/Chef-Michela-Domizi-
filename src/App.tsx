@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect, useState } from 'react';
-import { Menu, X, UtensilsCrossed, Briefcase, NotebookPen, Check, MapPin, Mail, ArrowRight, ArrowLeft, Quote, BookOpen, Clock, Share2, Facebook, Linkedin, Instagram, Languages, ChevronDown } from 'lucide-react';
+import React, { useEffect, useState, useRef } from 'react';
+import { Menu, X, UtensilsCrossed, Briefcase, NotebookPen, Check, MapPin, Mail, ArrowRight, ArrowLeft, Quote, BookOpen, Clock, Share2, Facebook, Linkedin, Instagram, Languages, ChevronDown, Volume2, VolumeX } from 'lucide-react';
 import BiographyView from './components/BiographyView';
 import ServicesView from './components/ServicesView';
 import EventsView from './components/EventsView';
@@ -27,12 +27,14 @@ const languages = [
 ];
 
 export default function App() {
-  const { currentLanguage, changeLanguage, t, isTranslating, translationError } = useTranslation();
+   const { currentLanguage, changeLanguage, t, isTranslating, translationError } = useTranslation();
   const [activeView, setActiveView] = useState<'home' | 'bio' | 'services' | 'eventi'>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasShadow, setHasShadow] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const [isErrorDismissed, setIsErrorDismissed] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     if (isTranslating) {
@@ -42,6 +44,22 @@ export default function App() {
 
   const handleTranslate = (lang: string) => {
     changeLanguage(lang);
+  };
+
+  const toggleMute = () => {
+    const iframe = iframeRef.current;
+    if (iframe && iframe.contentWindow) {
+      const command = isMuted ? 'unMute' : 'mute';
+      iframe.contentWindow.postMessage(
+        JSON.stringify({
+          event: 'command',
+          func: command,
+          args: [],
+        }),
+        '*'
+      );
+      setIsMuted(!isMuted);
+    }
   };
 
   const [formState, setFormState] = useState({
@@ -441,6 +459,7 @@ export default function App() {
                     {/* Main Spectacular Video Frame with Ambient Video */}
                     <div className="relative w-full h-full border border-[#1A1A1A] bg-[#f4ece7] overflow-hidden">
                       <iframe 
+                        ref={iframeRef}
                         id="hero-bg-video"
                         className="w-full h-full object-cover filter brightness-[0.98] contrast-[1.02]" 
                         src="https://www.youtube.com/embed/rgEpsxLPZS4?autoplay=1&mute=1&loop=1&playlist=rgEpsxLPZS4&enablejsapi=1"
@@ -449,6 +468,20 @@ export default function App() {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       />
+                      
+                      {/* Audio Controls */}
+                      <button
+                        onClick={toggleMute}
+                        className="absolute top-4 right-4 z-10 bg-[#1A1A1A]/80 hover:bg-[#1A1A1A] text-[#F8F7F4] p-2.5 rounded-full border border-[#F8F7F4]/20 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center cursor-pointer shadow-lg group"
+                        title={isMuted ? t("Attiva Audio") : t("Disattiva Audio")}
+                        aria-label={isMuted ? t("Attiva Audio") : t("Disattiva Audio")}
+                      >
+                        {isMuted ? (
+                          <VolumeX size={15} className="text-[#F8F7F4]/80 group-hover:text-[#F8F7F4]" />
+                        ) : (
+                          <Volume2 size={15} className="text-[#8B5E3C] group-hover:text-[#F8F7F4] animate-pulse" />
+                        )}
+                      </button>
                       
                       {/* Floating pill */}
                       <div className="absolute top-4 left-4 bg-[#1A1A1A] text-[#F8F7F4] px-4 py-2 font-mono-design text-[10px] tracking-widest uppercase flex items-center gap-1.5 shadow-lg">
