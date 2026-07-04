@@ -157,82 +157,73 @@ export default function App() {
 
   return (
     <div className="bg-[#F8F7F4] text-[#1A1A1A] font-body-md overflow-x-clip min-h-screen">
-      <div className="flex flex-col md:flex-row min-h-screen">
+      <div className="flex flex-col min-h-screen">
         
-        {/* Left Sidebar Navigation - sticky on desktop, hidden on mobile */}
-        <nav className="hidden md:flex flex-col justify-between w-[280px] shrink-0 border-r-[1.5px] border-[#1A1A1A] p-8 h-screen sticky top-0 bg-[#F8F7F4] z-40 self-start">
-          <div>
-            <div 
-              className="font-editorial text-[1.8rem] font-semibold leading-[0.9] tracking-tight uppercase mb-12 cursor-pointer text-[#1A1A1A] hover:text-[#8B5E3C] transition-colors" 
-              onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            >
-              CHEF<br/>MICHELA<br/>DOMIZI
-            </div>
-            <ul className="flex flex-col gap-5">
-              <li>
-                <button 
-                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'home' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
-                  onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                >
-                  Home Page
-                </button>
-              </li>
-              <li>
-                <button 
-                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'bio' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
-                  onClick={() => { setActiveView('bio'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                >
-                  Biografia
-                </button>
-              </li>
-              <li>
-                <button 
-                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'services' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
-                  onClick={() => { setActiveView('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                >
-                  Servizi
-                </button>
-              </li>
-              <li>
-                <button 
-                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'eventi' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
-                  onClick={() => { setActiveView('eventi'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                >
-                  Eventi
-                </button>
-              </li>
-              <li>
-                <button 
-                  className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-[#1A1A1A]/60 hover:text-[#1A1A1A] transition-colors duration-200 text-left"
-                  onClick={navigateToContactSection}
-                >
-                  Contatti
-                </button>
-              </li>
-            </ul>
+        {/* Classic Horizontal Sticky Navigation Bar */}
+        <nav id="header-nav" className="sticky top-0 w-full bg-[#F8F7F4]/95 backdrop-blur-md border-b-[1.5px] border-[#1A1A1A] px-6 md:px-12 py-5 flex justify-between items-center z-50">
+          <div 
+            className="font-editorial text-lg md:text-2xl font-semibold tracking-tight uppercase cursor-pointer text-[#1A1A1A] hover:text-[#8B5E3C] transition-colors" 
+            onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          >
+            CHEF MICHELA DOMIZI
           </div>
-          <div>
-            <p className="font-mono-design text-[0.65rem] uppercase tracking-[0.12em] text-[#1A1A1A]/60">© 2026</p>
-            <p className="font-mono-design text-[0.65rem] uppercase tracking-[0.12em] text-[#1A1A1A]/60 mt-1">Civitanova Marche</p>
-          </div>
-        </nav>
 
-        {/* Mobile Sticky Header */}
-        <div className="md:hidden sticky top-0 w-full bg-[#F8F7F4] border-b border-[#1A1A1A] px-6 py-4 flex justify-between items-center z-50">
-          <div className="font-editorial text-xl font-semibold uppercase cursor-pointer" onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-            Michela Domizi
-          </div>
+          {/* Desktop Navigation Links */}
+          <ul className="hidden md:flex items-center gap-8">
+            <li>
+              <button 
+                className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'home' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              >
+                Home Page
+              </button>
+            </li>
+            <li>
+              <button 
+                className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'bio' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                onClick={() => { setActiveView('bio'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              >
+                Biografia
+              </button>
+            </li>
+            <li>
+              <button 
+                className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'services' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                onClick={() => { setActiveView('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              >
+                Servizi
+              </button>
+            </li>
+            <li>
+              <button 
+                className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'eventi' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                onClick={() => { setActiveView('eventi'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              >
+                Eventi
+              </button>
+            </li>
+            <li>
+              <button 
+                className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-[#1A1A1A]/60 hover:text-[#1A1A1A] transition-colors duration-200 text-left"
+                onClick={navigateToContactSection}
+              >
+                Contatti
+              </button>
+            </li>
+          </ul>
+
+          {/* Mobile Menu Toggle Button */}
           <button 
-            className="text-[#1A1A1A] p-1 focus:outline-none"
+            className="md:hidden text-[#1A1A1A] p-1 focus:outline-none"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-        </div>
+        </nav>
 
         {/* Mobile Menu Drawer */}
         {isMobileMenuOpen && (
-          <div className="md:hidden fixed top-[61px] left-0 w-full bg-[#F8F7F4] border-b border-[#1A1A1A] px-6 py-6 flex flex-col gap-4 shadow-xl z-50">
+          <div className="md:hidden fixed top-[67px] left-0 w-full bg-[#F8F7F4] border-b border-[#1A1A1A] px-6 py-6 flex flex-col gap-4 shadow-xl z-50">
             <button 
               className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left ${activeView === 'home' ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]/60'}`}
               onClick={() => { setActiveView('home'); setIsMobileMenuOpen(false); }}
