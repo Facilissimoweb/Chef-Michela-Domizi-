@@ -10,6 +10,7 @@ import ServicesView from './components/ServicesView';
 import EventsView from './components/EventsView';
 import ConversionForm from './components/ConversionForm';
 import StickyFooter from './components/StickyFooter';
+import GeminiChat from './components/GeminiChat';
 import { useTranslation } from './context/TranslationContext';
 
 const languages = [
@@ -1099,6 +1100,7 @@ export default function App() {
         </div>
       )}
       <StickyFooter />
+      <GeminiChat />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { createServer as createViteServer } from "vite";
 
 import translateHandler from "./api/translate.ts";
 import healthHandler from "./api/health.ts";
+import chatHandler from "./api/chat.ts";
 
 dotenv.config();
 
@@ -16,6 +17,9 @@ app.use(express.json({ limit: "5mb" }));
 
 // Translate endpoint using Gemini
 app.post("/api/translate", translateHandler);
+
+// Chat endpoint using Gemini
+app.post("/api/chat", chatHandler);
 
 // Health check route
 app.get("/api/health", healthHandler);
