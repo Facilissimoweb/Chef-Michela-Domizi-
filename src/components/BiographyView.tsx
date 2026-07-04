@@ -101,24 +101,24 @@ export default function BiographyView({ onBackToHome, onNavigateToContact }: Bio
       </section>
 
       {/* Territorio & Paesaggio Section */}
-      <section className="py-24 px-6 md:px-12 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="order-2 md:order-1 relative">
-            <div className="aspect-[4/3] bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] overflow-hidden">
+      <section className="py-24 px-6 lg:px-12 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="relative">
+            <div className="aspect-[4/5] bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] overflow-hidden">
               <img 
                 src={collineImage} 
                 alt="Colline Marchigiane" 
-                className="w-full h-full object-cover filter brightness-[0.95]"
+                className="w-full h-full object-cover filter grayscale contrast-[1.05]"
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] flex items-center justify-center p-6 hidden md:flex">
+            <div className="absolute -bottom-6 -right-6 w-44 h-44 bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] flex items-center justify-center p-6 hidden lg:flex">
               <p className="text-center font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A] leading-tight">
                 Zafferano, Erbe Spontanee, Tartufo Pregiato
               </p>
             </div>
           </div>
-          <div className="order-1 md:order-2 space-y-6">
+          <div className="space-y-6">
             <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 02 ] LE RADICI</p>
             <h2 className="font-editorial text-4xl md:text-5xl uppercase tracking-tight text-[#1A1A1A]">Il Legame Profondo con le Marche</h2>
             <p className="font-sans-design text-sm md:text-base text-[#1A1A1A]/70 leading-relaxed">
@@ -132,7 +132,7 @@ export default function BiographyView({ onBackToHome, onNavigateToContact }: Bio
       </section>
 
       {/* Elegant Editorial Timeline */}
-      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-5xl mx-auto px-6 md:px-12">
+      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-5xl mx-auto px-6 lg:px-12">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
           <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 03 ] IL CAMMINO</p>
           <h2 className="font-editorial text-4xl uppercase text-[#1A1A1A]">Tappe Fondamentali</h2>
@@ -183,8 +183,8 @@ export default function BiographyView({ onBackToHome, onNavigateToContact }: Bio
       </section>
 
       {/* Signature Dish Section */}
-      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
             <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 04 ] PIATTO IDENTITARIO</p>
             <h2 className="font-editorial text-4xl md:text-5xl uppercase tracking-tight text-[#1A1A1A]">Tortellini di Caccia e Tartufo</h2>
@@ -223,7 +223,7 @@ export default function BiographyView({ onBackToHome, onNavigateToContact }: Bio
       </section>
 
       {/* Quote Interlude */}
-      <section className="py-24 bg-[#1A1A1A] text-[#F8F7F4] text-center px-6 md:px-12">
+      <section className="py-24 bg-[#1A1A1A] text-[#F8F7F4] text-center px-6 lg:px-12">
         <div className="max-w-4xl mx-auto space-y-8">
           <Quote size={40} className="text-[#8B5E3C] mx-auto opacity-80" />
           <p className="font-editorial text-2xl md:text-4xl italic leading-relaxed text-[#F8F7F4]/90">
@@ -238,7 +238,7 @@ export default function BiographyView({ onBackToHome, onNavigateToContact }: Bio
       </section>
 
       {/* Dynamic Call to Action */}
-      <section className="py-24 px-6 md:px-12 max-w-5xl mx-auto text-center space-y-8">
+      <section className="py-24 px-6 lg:px-12 max-w-5xl mx-auto text-center space-y-8">
         <h2 className="font-editorial text-3xl md:text-5xl uppercase text-[#1A1A1A]">Sperimenta la Vera Cucina Marchigiana</h2>
         <p className="font-sans-design text-[#1A1A1A]/70 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
           Disegna con me un evento personalizzato o una cena a domicilio di lusso, o sviluppa una consulenza gastronomica unica per il tuo brand.

@@ -183,16 +183,16 @@ export default function App() {
       <div className="flex flex-col min-h-screen">
         
         {/* Classic Horizontal Sticky Navigation Bar */}
-        <nav id="header-nav" className="sticky top-0 w-full bg-[#F8F7F4]/95 backdrop-blur-md border-b-[1.5px] border-[#1A1A1A] px-6 md:px-12 py-5 flex justify-between items-center z-50">
+        <nav id="header-nav" className="sticky top-0 w-full bg-[#F8F7F4]/95 backdrop-blur-md border-b-[1.5px] border-[#1A1A1A] px-6 lg:px-12 py-5 flex justify-between items-center z-50">
           <div 
-            className="font-editorial text-lg md:text-2xl font-semibold tracking-tight uppercase cursor-pointer text-[#1A1A1A] hover:text-[#8B5E3C] transition-colors" 
+            className="font-editorial text-lg lg:text-2xl font-semibold tracking-tight uppercase cursor-pointer text-[#1A1A1A] hover:text-[#8B5E3C] transition-colors" 
             onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           >
             CHEF MICHELA DOMIZI
           </div>
 
           {/* Desktop Navigation & Translation Container */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             <ul className="flex items-center gap-8">
               <li>
                 <button 
@@ -274,7 +274,7 @@ export default function App() {
           </div>
 
           {/* Mobile Right Container */}
-          <div className="flex items-center gap-3 md:hidden">
+          <div className="flex items-center gap-3 lg:hidden">
             {/* Translation Widget (Mobile) */}
             <div className="relative" id="translation-widget-mobile">
               <button 
@@ -318,7 +318,7 @@ export default function App() {
 
         {/* Mobile Menu Drawer */}
         {isMobileMenuOpen && (
-          <div className="md:hidden fixed top-[67px] left-0 w-full bg-[#F8F7F4] border-b border-[#1A1A1A] px-6 py-6 flex flex-col gap-4 shadow-xl z-50">
+          <div className="lg:hidden fixed top-[67px] left-0 w-full bg-[#F8F7F4] border-b border-[#1A1A1A] px-6 py-6 flex flex-col gap-4 shadow-xl z-50">
             <button 
               className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left ${activeView === 'home' ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]/60'}`}
               onClick={() => { setActiveView('home'); setIsMobileMenuOpen(false); }}
@@ -465,8 +465,8 @@ export default function App() {
               </section>
 
               {/* About Section */}
-              <section id="about" className="py-24 px-6 md:px-12 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto">
-                <div className="grid md:grid-cols-2 gap-16 items-center">
+              <section id="about" className="py-24 px-6 lg:px-12 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
                   <div className="relative reveal">
                     <div className="aspect-[4/5] bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] overflow-hidden">
                       <img 
@@ -477,7 +477,7 @@ export default function App() {
                         referrerPolicy="no-referrer"
                       />
                     </div>
-                    <div className="absolute -bottom-6 -right-6 w-44 h-44 bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] flex items-center justify-center p-6 hidden md:flex">
+                    <div className="absolute -bottom-6 -right-6 w-44 h-44 bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] flex items-center justify-center p-6 hidden lg:flex">
                       <p className="text-center font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A] leading-tight">
                         Ispirato alla Tradizione Marchigiana
                       </p>
@@ -531,7 +531,7 @@ export default function App() {
               </section>
 
               {/* Services Section */}
-              <section id="services" className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 md:px-12">
+              <section id="services" className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 lg:px-12">
                 <div className="text-center max-w-3xl mx-auto mb-16 reveal space-y-4">
                   <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 02 ] SERVIZI ESCLUSIVI</p>
                   <h2 className="font-editorial text-4xl md:text-5xl uppercase text-[#1A1A1A]">Esperienze Gastronomiche</h2>
@@ -539,7 +539,7 @@ export default function App() {
                     Soluzioni su misura per clienti esigenti e professionisti del settore che desiderano affinare il proprio racconto gastronomico.
                   </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full justify-items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full justify-items-center">
                   {/* Service 1 */}
                   <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-6 sm:p-8 reveal flex flex-col justify-between w-full max-w-md md:max-w-none mx-auto text-center md:text-left">
                     <div>
@@ -613,9 +613,9 @@ export default function App() {
               </section>
 
               {/* Supporting Visuals Section (Bento Style) */}
-              <section id="bento-gallery" className="py-24 max-w-7xl mx-auto px-6 md:px-12 border-b border-[#1A1A1A]/10">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[800px] md:h-[500px]">
-                  <div className="md:col-span-2 md:row-span-2 overflow-hidden border border-[#1A1A1A] reveal">
+              <section id="bento-gallery" className="py-24 max-w-7xl mx-auto px-6 lg:px-12 border-b border-[#1A1A1A]/10">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 h-[1200px] lg:h-[500px]">
+                  <div className="lg:col-span-2 lg:row-span-2 overflow-hidden border border-[#1A1A1A] reveal">
                     <img 
                       id="gallery-image-1"
                       alt="Supporto Culinario" 
@@ -624,7 +624,7 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <div className="md:col-span-2 overflow-hidden border border-[#1A1A1A] reveal">
+                  <div className="lg:col-span-2 overflow-hidden border border-[#1A1A1A] reveal">
                     <img 
                       id="gallery-image-2"
                       alt="Pasta Fatta a Mano" 
@@ -669,8 +669,8 @@ export default function App() {
               </section>
 
               {/* Contact Section */}
-              <section id="contact" className="py-24 max-w-7xl mx-auto px-6 md:px-12 scroll-mt-12">
-                <div className="grid md:grid-cols-2 gap-16 items-start">
+              <section id="contact" className="py-24 max-w-7xl mx-auto px-6 lg:px-12 scroll-mt-12">
+                <div className="grid lg:grid-cols-2 gap-16 items-start">
                   <div className="reveal space-y-6">
                     <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 03 ] CONTATTI</p>
                     <h2 className="font-editorial text-4xl md:text-5xl uppercase tracking-tight text-[#1A1A1A]">Creiamo Insieme</h2>
