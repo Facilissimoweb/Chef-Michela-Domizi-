@@ -22,28 +22,6 @@ export default function ServicesView({ onBackToHome, onNavigateToContact }: Serv
 
   return (
     <div className="bg-background min-h-screen text-on-background pb-24 mt-20">
-      {/* Scrollable Editorial breadcrumb banner */}
-      <div className="border-b border-outline/10 bg-surface-container-lowest/50 py-4 backdrop-blur-md sticky top-20 z-30">
-        <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex items-center justify-between">
-          <button 
-            onClick={onBackToHome}
-            className="flex items-center gap-2 group text-secondary hover:text-primary font-label-md transition-colors"
-          >
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            <span>Torna alla Home</span>
-          </button>
-          <div className="text-secondary/60 text-xs font-mono tracking-wider hidden sm:block">
-            I MIEI SERVIZI — CHEF &amp; CONSULENTE
-          </div>
-          <button
-            onClick={onNavigateToContact}
-            className="bg-primary hover:bg-primary/95 text-surface px-5 py-1.5 rounded-full text-xs font-label-md transition-all duration-300"
-          >
-            Invia Richiesta
-          </button>
-        </div>
-      </div>
-
       {/* Services Overview Introductory Hero - Fully Immersive & High-impact */}
       <header className="relative min-h-[50vh] flex items-center justify-center overflow-hidden mb-16">
         <div className="absolute inset-0 z-0">

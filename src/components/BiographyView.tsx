@@ -18,28 +18,6 @@ export default function BiographyView({ onBackToHome, onNavigateToContact }: Bio
 
   return (
     <div className="bg-background min-h-screen text-on-background pb-24 mt-20">
-      {/* Editorial Navigation breadcrumb */}
-      <div className="border-b border-outline/10 bg-surface-container-lowest/50 py-4 backdrop-blur-md sticky top-20 z-30">
-        <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex items-center justify-between">
-          <button 
-            onClick={onBackToHome}
-            className="flex items-center gap-2 group text-secondary hover:text-primary font-label-md transition-colors"
-          >
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            <span>Torna alla Home</span>
-          </button>
-          <div className="text-secondary/60 text-xs font-mono tracking-wider hidden sm:block">
-            BIOGRAFIA — CHEF MICHELA DOMIZI
-          </div>
-          <button
-            onClick={onNavigateToContact}
-            className="bg-primary/5 text-primary hover:bg-primary hover:text-surface px-5 py-1.5 rounded-full text-xs font-label-md transition-all duration-300"
-          >
-            Prenota Esperienza
-          </button>
-        </div>
-      </div>
-
       {/* Immersive Editorial Photo Banner */}
       <div className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden">
         <img 

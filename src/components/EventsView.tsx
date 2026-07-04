@@ -14,30 +14,6 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
 
   return (
     <div className="bg-background min-h-screen text-on-background pb-24 mt-20 animate-fade-in">
-      {/* Editorial breadcrumb banner */}
-      <div className="border-b border-outline/10 bg-surface-container-lowest/50 py-4 backdrop-blur-md sticky top-20 z-30">
-        <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex items-center justify-between">
-          <button 
-            type="button"
-            onClick={onBackToHome}
-            className="flex items-center gap-2 group text-secondary hover:text-primary font-label-md transition-colors pointer-events-auto"
-          >
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            <span>Torna alla Home</span>
-          </button>
-          <div className="text-secondary/60 text-xs font-mono tracking-wider hidden sm:block">
-            ESPERIENZE &amp; EVENTI — CHEF MICHELA DOMIZI
-          </div>
-          <button
-            type="button"
-            onClick={onNavigateToContact}
-            className="bg-primary hover:bg-primary/95 text-surface px-5 py-1.5 rounded-full text-xs font-label-md transition-all duration-300 shadow-sm"
-          >
-            Raccontami il tuo evento
-          </button>
-        </div>
-      </div>
-
       {/* Hero Visual Section */}
       <section className="relative min-h-[65vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
