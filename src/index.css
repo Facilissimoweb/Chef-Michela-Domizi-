@@ -69,6 +69,21 @@
   --font-body-lg: "Inter", sans-serif;
   --font-headline-lg-mobile: "Cormorant Garamond", serif;
   --font-headline-xl: "Cormorant Garamond", serif;
+  --font-editorial: "Cormorant Garamond", serif;
+  --font-sans-design: "Inter", sans-serif;
+  --font-mono-design: "Space Mono", monospace;
+}
+
+.font-editorial {
+  font-family: "Cormorant Garamond", serif !important;
+}
+
+.font-sans-design {
+  font-family: "Inter", sans-serif;
+}
+
+.font-mono-design {
+  font-family: "Space Mono", monospace;
 }
 
 :root {
