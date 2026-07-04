@@ -156,11 +156,11 @@ export default function App() {
   };
 
   return (
-    <div className="bg-[#F8F7F4] text-[#1A1A1A] font-body-md overflow-x-hidden min-h-screen">
+    <div className="bg-[#F8F7F4] text-[#1A1A1A] font-body-md overflow-x-clip min-h-screen">
       <div className="flex flex-col md:flex-row min-h-screen">
         
         {/* Left Sidebar Navigation - sticky on desktop, hidden on mobile */}
-        <nav className="hidden md:flex flex-col justify-between w-[280px] shrink-0 border-r-[1.5px] border-[#1A1A1A] p-8 h-screen sticky top-0 bg-[#F8F7F4] z-40">
+        <nav className="hidden md:flex flex-col justify-between w-[280px] shrink-0 border-r-[1.5px] border-[#1A1A1A] p-8 h-screen sticky top-0 bg-[#F8F7F4] z-40 self-start">
           <div>
             <div 
               className="font-editorial text-[1.8rem] font-semibold leading-[0.9] tracking-tight uppercase mb-12 cursor-pointer text-[#1A1A1A] hover:text-[#8B5E3C] transition-colors" 
