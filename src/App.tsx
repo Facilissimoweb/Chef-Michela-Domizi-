@@ -420,7 +420,7 @@ export default function App() {
                       <video 
                         id="hero-bg-video"
                         className="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02]" 
-                        src="./assets/video/nome-video.mp4"
+                        src="https://assets.mixkit.co/videos/preview/mixkit-cooking-in-a-professional-kitchen-40011-large.mp4"
                         poster="./assets/img/anteprima-video.jpg"
                         controls
                         autoPlay
