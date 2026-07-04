@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ArrowLeft, ArrowRight, Sparkles, Check, Calendar, Heart, Award, UtensilsCrossed } from 'lucide-react';
+import { ArrowRight, Check, Calendar, Heart, Award, UtensilsCrossed } from 'lucide-react';
 
 interface EventsViewProps {
   onBackToHome: () => void;
@@ -8,67 +8,192 @@ interface EventsViewProps {
 
 export default function EventsView({ onBackToHome, onNavigateToContact }: EventsViewProps) {
   useEffect(() => {
-    // Scroll to the absolute top on mount
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
   return (
-    <div className="bg-background min-h-screen text-on-background pb-24 mt-20 animate-fade-in">
-      {/* Hero Visual Section */}
-      <section className="relative min-h-[65vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            alt="Arte della tavola ed eventi d'autore" 
-            className="w-full h-full object-cover object-center scale-102 filter brightness-[0.55] contrast-[1.05]" 
-            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1800"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/50 to-black/70"></div>
-        </div>
-        
-        <div className="relative z-10 px-margin-mobile md:px-margin-desktop text-center max-w-4xl mx-auto space-y-6 pt-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-white font-label-sm text-xs tracking-wider uppercase backdrop-blur-md shadow-sm">
-            <Sparkles size={12} className="text-[#eebf6d]" />
-            <span>DIREZIONE GASTRONOMICA SARTORIALE</span>
-          </div>
-          <h1 className="font-headline-xl text-4xl md:text-6xl text-[#fff8f4] font-bold tracking-tight leading-[1.12] drop-shadow-md">
-            L’Arte della Tavola,<br />
-            <span className="italic font-normal text-white">Ovunque Tu Sia</span>
+    <div className="bg-[#F8F7F4] text-[#1A1A1A] min-h-screen">
+      {/* Editorial View Header */}
+      <div className="view-header border-b border-[#1A1A1A]/10">
+        <span className="label">Eventi / No. 03</span>
+        <span className="label">Michela Domizi Chef — +30 Anni di Esperienza Culinaria</span>
+      </div>
+
+      {/* Intro Hero Split Section */}
+      <section className="content-grid border-b border-[#1A1A1A]/10">
+        <div className="text-panel flex flex-col justify-center">
+          <p className="label mb-6">[ 01 ] DIREZIONE GASTRONOMICA</p>
+          <h1 className="font-editorial text-5xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tight uppercase mb-8">
+            L'Arte della<br/>Tavola
           </h1>
-          <div className="w-16 h-0.5 bg-white/25 mx-auto my-4"></div>
-          <p className="font-body-lg text-[#e8e1dc] max-w-2xl mx-auto leading-relaxed drop-shadow-sm font-medium">
-            La cucina non è solo un atto di precisione: è il cuore di un momento da ricordare. Che si tratti di una cena intima nel calore della tua casa, di un evento aziendale che deve lasciare il segno, o di un’occasione speciale in una location che ti sta a cuore, la mia cucina si sposta per te.
+          <p className="quote text-xl md:text-2xl font-editorial italic text-[#8B5E3C] leading-relaxed mb-8">
+            “Non cucino per riempire piatti, ma per tessere ricordi preziosi. L'esperienza dell'alta ristorazione marchigiana, ovunque tu desideri.”
           </p>
+          <div className="body-text text-[#1A1A1A]/70 text-sm md:text-base leading-relaxed space-y-6 max-w-xl">
+            <p>
+              Gli eventi firmati da me sono concepiti come autentici progetti di sartoria enogastronomica. Con oltre <span className="text-[#1A1A1A] font-semibold">+30 anni di esperienza</span>, rifiuto le formule standardizzate del catering industriale per dare vita a incontri esclusivi basati sull'unicità della proposta e sulla freschezza assoluta delle materie prime locali.
+            </p>
+            <p>
+              Porto la mia cucina e la mia brigata ovunque tu sia: in una dimora storica dell'entroterra maceratese, in un giardino sul mare a Civitanova Marche, o nell'intimità raffinata della tua veranda.
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap gap-4 mt-10 pt-8 border-t border-[#1A1A1A]/10">
+            <button 
+              className="inline-block bg-[#1A1A1A] text-[#F8F7F4] px-8 py-4 font-mono-design text-xs uppercase tracking-[0.12em] hover:bg-[#8B5E3C] transition-colors duration-300"
+              onClick={onNavigateToContact}
+            >
+              Progetta il Tuo Evento
+            </button>
+            <button 
+              className="inline-block border-[1.5px] border-[#1A1A1A] text-[#1A1A1A] px-8 py-4 font-mono-design text-xs uppercase tracking-[0.12em] hover:bg-[#1A1A1A] hover:text-[#F8F7F4] transition-all duration-300"
+              onClick={onBackToHome}
+            >
+              Torna alla Home
+            </button>
+          </div>
+        </div>
+
+        <div className="media-panel flex items-center justify-center p-8 bg-[#1A1A1A]/5 border-l border-[#1A1A1A]/10">
+          <div className="w-full max-w-[500px] aspect-[4/5] relative">
+            <div className="relative w-full h-full border border-[#1A1A1A] bg-[#f4ece7] overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1200" 
+                alt="Tavola ed eventi d'autore" 
+                className="w-full h-full object-cover filter grayscale contrast-[1.03]"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute top-4 left-4 bg-[#1A1A1A] text-[#F8F7F4] px-4 py-2 font-mono-design text-[10px] tracking-widest uppercase flex items-center gap-1.5 shadow-lg">
+                <span className="w-2 h-2 bg-[#8B5E3C] animate-pulse"></span>
+                <span>ESTETICA E MEMORIA</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Core Approach Section */}
-      <section className="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6 space-y-6">
-            <span className="font-label-lg text-secondary uppercase tracking-widest text-xs font-semibold block">Dettaglio Filosofia</span>
-            <h2 className="font-headline-lg text-headline-sm text-primary font-bold">
-              La tua occasione, il mio approccio
-            </h2>
-            <p className="font-headline-sm text-lg italic text-[#8B5E3C] leading-snug">
-              Non offro catering. Offro una direzione gastronomica sartoriale.
-            </p>
-            <p className="font-body-lg text-body-md text-on-surface-variant leading-relaxed">
-              Dimentica i menu standardizzati e le soluzioni preconfezionate: il mio obiettivo è disegnare, insieme a te, un percorso che parli dell'evento, dei tuoi ospiti e della stagionalità del nostro territorio marchigiano.
-            </p>
-            <div className="pt-4 border-t border-outline/10">
-              <p className="font-body-md text-sm text-secondary italic">
-                Sulla base di <strong>Macerata (Marche)</strong>, assecondiamo eventi su tutto il territorio regionale valorizzando gemme paesaggistiche nascoste e residenze d'epoca private.
+      {/* Philosophy Section */}
+      <section className="py-24 px-6 md:px-12 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="relative">
+            <div className="aspect-[4/3] border-[1.5px] border-[#1A1A1A] overflow-hidden bg-[#F4ECE7]">
+              <img 
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1200" 
+                alt="Catering e design d'autore" 
+                className="w-full h-full object-cover filter grayscale"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] flex items-center justify-center p-6 hidden md:flex">
+              <p className="text-center font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A] leading-tight">
+                Direzione Gastronomica Sartoriale
               </p>
             </div>
           </div>
-          
-          <div className="lg:col-span-6">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-outline/10 group">
+          <div className="space-y-6">
+            <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 02 ] STRATEGIA</p>
+            <h2 className="font-editorial text-4xl md:text-5xl uppercase tracking-tight text-[#1A1A1A]">La Sostanza nel Servizio</h2>
+            <p className="font-sans-design text-sm md:text-base text-[#1A1A1A]/70 leading-relaxed">
+              Il mio obiettivo è disegnare un'atmosfera coerente. Ogni dettaglio della tavola, l'abbinamento dei vini autoctoni e la successione dei piatti sono coordinati con rigore millimetrico per rispettare la solennità del momento.
+            </p>
+            <p className="font-sans-design text-sm md:text-base text-[#1A1A1A]/70 leading-relaxed">
+              Dalla scelta del pane artigianale a lievitazione naturale fino alle decorazioni composte da erbe aromatiche fresche delle colline, nulla è lasciato al caso. L'eccellenza rurale contemporanea si esprime nella semplicità più curata.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works Section */}
+      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 md:px-12">
+        <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
+          <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 03 ] COME FUNZIONA</p>
+          <h2 className="font-editorial text-4xl md:text-5xl uppercase text-[#1A1A1A]">Il Nostro Metodo Operativo</h2>
+          <div className="w-16 h-[1.5px] bg-[#8B5E3C] mx-auto"></div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Step 1 */}
+          <div className="border-[1.5px] border-[#1A1A1A] p-8 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6">
+                <UtensilsCrossed size={20} className="text-[#1A1A1A]" />
+              </div>
+              <h3 className="font-editorial text-xl uppercase font-semibold mb-3">Menu Personalizzato</h3>
+              <p className="font-sans-design text-sm text-[#1A1A1A]/70 mb-6 leading-relaxed">
+                Nessun catalogo precompilato. Definiamo insieme un percorso enogastronomico unico che rispetti le tue preferenze e celebri la ricchezza del periodo stagionale.
+              </p>
+            </div>
+            <span className="font-mono-design text-[9px] uppercase tracking-wider text-[#1A1A1A]/50 border-t border-[#1A1A1A]/10 pt-4">01 / CONCEPT</span>
+          </div>
+
+          {/* Step 2 */}
+          <div className="border-[1.5px] border-[#1A1A1A] p-8 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6">
+                <Heart size={20} className="text-[#1A1A1A]" />
+              </div>
+              <h3 className="font-editorial text-xl uppercase font-semibold mb-3">Ingredienti Etici</h3>
+              <p className="font-sans-design text-sm text-[#1A1A1A]/70 mb-6 leading-relaxed">
+                Selezioniamo materie prime freschissime fornite direttamente da piccoli contadini, pescatori ed allevatori delle Marche che tutelano la biodiversità locale.
+              </p>
+            </div>
+            <span className="font-mono-design text-[9px] uppercase tracking-wider text-[#1A1A1A]/50 border-t border-[#1A1A1A]/10 pt-4">02 / LA SPESA</span>
+          </div>
+
+          {/* Step 3 */}
+          <div className="border-[1.5px] border-[#1A1A1A] p-8 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6">
+                <Award size={20} className="text-[#1A1A1A]" />
+              </div>
+              <h3 className="font-editorial text-xl uppercase font-semibold mb-3">Esperienza Unica</h3>
+              <p className="font-sans-design text-sm text-[#1A1A1A]/70 mb-6 leading-relaxed">
+                Per appuntamenti esclusivi proponiamo anche cene "a quattro mani", in cui la mia cucina si unisce a quella di illustri interpreti del gusto regionale.
+              </p>
+            </div>
+            <span className="font-mono-design text-[9px] uppercase tracking-wider text-[#1A1A1A]/50 border-t border-[#1A1A1A]/10 pt-4">03 / LA CENA</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Expectations Section */}
+      <section className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="space-y-6">
+            <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 04 ] MATERIE PRIME</p>
+            <h2 className="font-editorial text-4xl md:text-5xl uppercase tracking-tight text-[#1A1A1A]">Cosa Aspettarsi Sulla Tavola</h2>
+            <p className="font-sans-design text-sm md:text-base text-[#1A1A1A]/70 leading-relaxed">
+              Il sapore pulito del biologico, la morbidezza delle carni allevate allo stato semibrado, l'eleganza di un olio d'oliva extravergine monocultivar spremuto a freddo nelle colline maceratesi.
+            </p>
+            <div className="space-y-4 pt-6 border-t border-[#1A1A1A]/10">
+              <div className="flex items-center gap-3">
+                <Check size={16} className="text-[#8B5E3C]" />
+                <span className="font-mono-design text-[10px] uppercase tracking-widest text-[#1A1A1A]/70">Zafferano Puro di Matelica e Tartufo Nero</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check size={16} className="text-[#8B5E3C]" />
+                <span className="font-mono-design text-[10px] uppercase tracking-widest text-[#1A1A1A]/70">Verdure selvatiche ed erbe aromatiche colte all'alba</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check size={16} className="text-[#8B5E3C]" />
+                <span className="font-mono-design text-[10px] uppercase tracking-widest text-[#1A1A1A]/70">Cacciagione dell'entroterra ed eccellenze ittiche dell'Adriatico</span>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="aspect-[3/4] border-[1.5px] border-[#1A1A1A] overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1200" 
-                alt="Tavola apparecchiata d'autore" 
-                className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
+                src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800" 
+                alt="Dettaglio piatto d'autore" 
+                className="w-full h-full object-cover filter grayscale"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="aspect-[3/4] border-[1.5px] border-[#1A1A1A] overflow-hidden mt-8">
+              <img 
+                src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" 
+                alt="Piatto marchigiano servito" 
+                className="w-full h-full object-cover filter grayscale"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -76,145 +201,25 @@ export default function EventsView({ onBackToHome, onNavigateToContact }: Events
         </div>
       </section>
 
-      {/* How it works Section */}
-      <section className="bg-surface-container py-24 border-y border-outline/10">
-        <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto space-y-16">
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="font-label-sm text-xs text-primary uppercase tracking-widest font-bold">LA GUIDA PRATICA</span>
-            <h2 className="font-headline-lg text-headline-lg text-primary font-bold">Come funziona</h2>
-            <p className="font-body-lg text-body-lg text-secondary leading-relaxed">
-              La location la scegli tu. Io porto la sostanza, la ricerca e la cura che definiscono la mia identità di chef.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Step 1: Menu su misura */}
-            <div className="bg-background p-8 rounded-xl border border-outline/5 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
-                  <UtensilsCrossed size={20} />
-                </div>
-                <h3 className="font-headline-sm text-lg text-primary font-bold">Menu su misura</h3>
-                <p className="font-body-md text-sm text-secondary leading-relaxed">
-                  Studiamo insieme una proposta che rispetti i tuoi gusti e il tema dell'evento, valorizzando le materie prime che la terra ci offre in quel preciso momento.
-                </p>
-              </div>
-              <div className="pt-6 text-[11px] font-mono uppercase text-primary/75 tracking-wider font-semibold">01 / Personalizzazione</div>
-            </div>
-
-            {/* Step 2: Approccio etico */}
-            <div className="bg-background p-8 rounded-xl border border-outline/5 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
-                  <Heart size={20} />
-                </div>
-                <h3 className="font-headline-sm text-lg text-primary font-bold">Approccio etico</h3>
-                <p className="font-body-md text-sm text-secondary leading-relaxed">
-                  Proprio come nel mio ristorante, ogni ingrediente è selezionato da piccoli produttori locali. Non scendo a compromessi sulla qualità.
-                </p>
-              </div>
-              <div className="pt-6 text-[11px] font-mono uppercase text-primary/75 tracking-wider font-semibold">02 / Sostenibilità locale</div>
-            </div>
-
-            {/* Step 3: Esperienza "A Quattro Mani" */}
-            <div className="bg-background p-8 rounded-xl border border-outline/5 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
-                  <Award size={20} />
-                </div>
-                <h3 className="font-headline-sm text-lg text-primary font-bold">Esperienza "A Quattro Mani"</h3>
-                <p className="font-body-md text-sm text-secondary leading-relaxed">
-                  Per eventi che richiedono un tocco di stupore in più, propongo serate speciali in sinergia con illustri colleghi. Un intreccio di filosofie culinarie per creare qualcosa di inaspettato.
-                </p>
-              </div>
-              <div className="pt-6 text-[11px] font-mono uppercase text-primary/75 tracking-wider font-semibold">03 / Sinergia d'autore</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Expect on your plate Section */}
-      <section className="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-        <div className="grid lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-6 relative order-2 lg:order-1">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg border border-outline/5">
-                  <img 
-                    src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800" 
-                    alt="Piatto marchigiano rivisitato" 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div className="aspect-square rounded-xl bg-primary/5 flex flex-col justify-center p-6 border border-primary/10">
-                  <span className="font-mono text-xs text-primary font-bold tracking-widest uppercase block mb-2">PRODUTTORI</span>
-                  <p className="text-xs text-secondary leading-relaxed">Matelica, colline Maceratesi, Monti Sibillini. Solo eccellenze autoctone autentiche.</p>
-                </div>
-              </div>
-              <div className="space-y-4 pt-8">
-                <div className="aspect-square rounded-xl bg-[#f4ece7]/50 flex flex-col justify-center p-6 border border-[#e8e1dc]">
-                  <span className="font-mono text-xs text-primary font-bold tracking-widest uppercase block mb-2">TRADIZIONE</span>
-                  <p className="text-xs text-secondary leading-relaxed">Unione profonda della memoria locale selvaggia e delle tecniche moderne di cottura.</p>
-                </div>
-                <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg border border-outline/5">
-                  <img 
-                    src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" 
-                    alt="Esperienza culinaria" 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-6 space-y-6 order-1 lg:order-2">
-            <span className="font-label-lg text-secondary uppercase tracking-widest text-xs font-semibold block">Nel Gusto della Storia</span>
-            <h2 className="font-headline-lg text-headline-sm text-primary font-bold">Cosa puoi aspettarti nel piatto</h2>
-            <p className="font-body-lg text-on-surface-variant leading-relaxed">
-              Ogni mio evento è un ponte tra la memoria del gusto "antico" e la curiosità dell'innovazione. Dai tortellini ripieni di caccia allo zafferano di Matelica alle carni da allevatori etici, fino alle verdure dell'orto che raccontano la biodiversità marchigiana: il mio stile è fatto di sapori autentici, nitidi e profondi.
-            </p>
-            <div className="pt-4 border-t border-outline/10 space-y-3">
-              <div className="flex items-center gap-2.5">
-                <Check size={16} className="text-primary shrink-0" />
-                <span className="text-sm font-label-md text-secondary">Zafferano di Matelica e Tartufo marchigiano</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Check size={16} className="text-primary shrink-0" />
-                <span className="text-sm font-label-md text-secondary">Cacciagione e allevamenti allo stato brado</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Check size={16} className="text-primary shrink-0" />
-                <span className="text-sm font-label-md text-secondary">Erbe selvatiche e microortaggi collinari</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Dynamic CTA Banner Section */}
-      <section className="bg-primary text-surface py-20 text-center relative overflow-hidden px-margin-mobile">
-        <div className="absolute top-0 right-0 opacity-[0.03] pointer-events-none scale-150 transform translate-x-12 translate-y-12">
-          <Calendar size={400} />
-        </div>
-        <div className="max-w-2xl mx-auto space-y-6 relative z-10">
-          <h2 className="font-headline-lg text-2xl md:text-3xl font-bold italic leading-tight text-white">
-            Vuoi trasformare un’occasione in un’esperienza gastronomica indimenticabile?
-          </h2>
-          <p className="font-body-md text-sm text-surface/80 max-w-lg mx-auto">
-            Non serve una struttura complessa. Serve una visione condivisa.
-          </p>
-          <div className="pt-6">
-            <button
-              type="button"
-              onClick={onNavigateToContact}
-              className="bg-white text-primary hover:bg-[#f4ece7] transition-all duration-300 font-label-md text-label-md font-bold px-10 py-4 rounded-full shadow-lg inline-flex items-center gap-2 active:scale-95 cursor-pointer pointer-events-auto"
-            >
-              <span>Raccontami il tuo evento</span>
-              <ArrowRight size={18} />
-            </button>
-          </div>
+      {/* Call to action at bottom */}
+      <section className="py-24 px-6 md:px-12 max-w-5xl mx-auto text-center space-y-8">
+        <h2 className="font-editorial text-3xl md:text-5xl uppercase text-[#1A1A1A]">Pronto a Creare un Ricordo Meraviglioso?</h2>
+        <p className="font-sans-design text-[#1A1A1A]/70 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+          Pianifichiamo ogni dettaglio del tuo prossimo evento esclusivo nelle Marche. Richiedi subito una disponibilità o un preventivo personalizzato.
+        </p>
+        <div className="flex flex-wrap gap-4 justify-center pt-4">
+          <button 
+            onClick={onNavigateToContact}
+            className="bg-[#1A1A1A] text-[#F8F7F4] px-8 py-4 font-mono-design text-xs uppercase tracking-[0.12em] hover:bg-[#8B5E3C] transition-colors duration-300"
+          >
+            Inizia il Progetto
+          </button>
+          <button 
+            onClick={onBackToHome}
+            className="border-[1.5px] border-[#1A1A1A] text-[#1A1A1A] px-8 py-4 font-mono-design text-xs uppercase tracking-[0.12em] hover:bg-[#1A1A1A] hover:text-[#F8F7F4] transition-all duration-300"
+          >
+            Torna alla Home Page
+          </button>
         </div>
       </section>
     </div>
