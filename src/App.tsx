@@ -32,17 +32,16 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasShadow, setHasShadow] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  const [isErrorDismissed, setIsErrorDismissed] = useState(false);
+
+  useEffect(() => {
+    if (isTranslating) {
+      setIsErrorDismissed(false);
+    }
+  }, [isTranslating]);
 
   const handleTranslate = (lang: string) => {
-    if (lang === 'it') {
-      changeLanguage('it');
-      return;
-    }
-    if (typeof window !== 'undefined') {
-      const currentUrl = window.location.href;
-      const translateUrl = `https://translate.google.com/translate?sl=it&tl=${lang}&u=${encodeURIComponent(currentUrl)}`;
-      window.open(translateUrl, '_blank');
-    }
+    changeLanguage(lang);
   };
 
   const [formState, setFormState] = useState({
@@ -323,6 +322,21 @@ export default function App() {
             </button>
           </div>
         </nav>
+
+        {translationError && !isErrorDismissed && (
+          <div className="bg-[#8B5E3C]/10 border-b border-[#8B5E3C]/30 px-6 py-3.5 flex justify-between items-center text-[#8B5E3C] text-xs font-mono-design uppercase tracking-wider z-40">
+            <div className="flex items-center gap-2.5">
+              <span className="text-sm">⚠️</span>
+              <span className="font-semibold">{translationError}</span>
+            </div>
+            <button 
+              onClick={() => setIsErrorDismissed(true)}
+              className="text-[#8B5E3C] hover:text-[#1A1A1A] p-1 cursor-pointer transition-colors"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        )}
 
         {/* Mobile Menu Drawer */}
         {isMobileMenuOpen && (

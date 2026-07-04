@@ -81,16 +81,38 @@ CRITICAL INSTRUCTIONS:
 
     const prompt = JSON.stringify(strings);
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
-      contents: prompt,
-      config: {
-        systemInstruction,
-        responseMimeType: "application/json",
-      },
-    });
+    let response;
+    try {
+      response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt,
+        config: {
+          systemInstruction,
+          responseMimeType: "application/json",
+        },
+      });
+    } catch (primaryErr: any) {
+      console.warn("Primary model gemini-2.5-flash failed, trying fallback gemini-1.5-flash...", primaryErr);
+      response = await ai.models.generateContent({
+        model: "gemini-1.5-flash",
+        contents: prompt,
+        config: {
+          systemInstruction,
+          responseMimeType: "application/json",
+        },
+      });
+    }
 
-    const resultText = response.text?.trim() || "{}";
+    let resultText = response.text?.trim() || "{}";
+    
+    // Clean potential markdown wrap just in case
+    if (resultText.startsWith("```")) {
+      resultText = resultText
+        .replace(/^```json\s*/i, "")
+        .replace(/```$/, "")
+        .trim();
+    }
+
     const translatedStrings = JSON.parse(resultText);
 
     return res.json({ translatedStrings });
