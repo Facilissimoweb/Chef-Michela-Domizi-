@@ -8,10 +8,10 @@ export default function StickyFooter() {
   // ==========================================
   
   // 1. IL TUO NUMERO DI TELEFONO (formato internazionale es. +393331234567)
-  const PHONE_NUMBER = "+393460920621";
+  const PHONE_NUMBER = "+39123456789"; 
 
   // 2. IL TUO LINK DI CHAT WHATSAPP (sostituisci il numero marchiato dopo wa.me/)
-  const WHATSAPP_URL = "https://wa.me/393460920621?text=Ciao%20Michela,%20ti%20contatto%20dal%20sito%20web%20per%20un%20progetto!";
+  const WHATSAPP_URL = "https://wa.me/39123456789?text=Ciao%20Michela,%20ti%20contatto%20dal%20sito%20web%20per%20un%20progetto!";
 
   // 3. L'ANCORA DEL MODULO DI CONTATTO (lascia #modulo-contatti)
   const CONTACT_ANCHOR = "#modulo-contatti";

@@ -8,7 +8,6 @@ import { Menu, X, UtensilsCrossed, Briefcase, NotebookPen, Check, MapPin, Mail, 
 import BiographyView from './components/BiographyView';
 import ServicesView from './components/ServicesView';
 import EventsView from './components/EventsView';
-import domiziImage from './assets/images/domizi-683x1024.jpeg';
 import ConversionForm from './components/ConversionForm';
 import StickyFooter from './components/StickyFooter';
 
@@ -16,6 +15,13 @@ export default function App() {
   const [activeView, setActiveView] = useState<'home' | 'bio' | 'services' | 'eventi'>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasShadow, setHasShadow] = useState(false);
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    service: 'Cena Privata',
+    message: ''
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isCookieBannerOpen, setIsCookieBannerOpen] = useState(true);
   const [shareInfo, setShareInfo] = useState({ url: 'https://ais-pre-uxt5g2uxclhimjtes7ujes-205869432441.europe-west2.run.app', text: 'Scopri la cucina rurale contemporanea di Chef Michela Domizi nelle Marche!' });
@@ -135,506 +141,524 @@ export default function App() {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    // Reset form after a small delay
+    setTimeout(() => {
+      setFormState({
+        name: '',
+        email: '',
+        service: 'Cena Privata',
+        message: ''
+      });
+    }, 1000);
+  };
 
   return (
-    <div className="bg-background text-on-background font-body-md overflow-x-hidden min-h-screen">
-      {/* TopNavBar */}
-      <nav id="nav-bar" className={`fixed top-0 w-full z-50 bg-primary/95 backdrop-blur-md transition-shadow duration-300 border-b border-surface/10 ${hasShadow ? 'shadow-lg' : ''}`}>
-        <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
-          <a className="font-headline-sm text-headline-sm text-surface hover:text-surface-variant transition-colors" href="#" onClick={(e) => handleScroll(e, '#')}>
-            Chef Michela Domizi
-          </a>
-          <div className="hidden md:flex gap-10 items-center">
-            <button 
-              className={`font-label-md text-label-md hover:text-surface-variant transition-colors duration-300 bg-transparent border-0 p-0 text-left cursor-pointer focus:outline-none ${activeView === 'bio' ? 'text-surface font-semibold border-b border-surface' : 'text-surface/80'}`} 
-              onClick={() => {
-                setActiveView('bio');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
+    <div className="bg-[#F8F7F4] text-[#1A1A1A] font-body-md overflow-x-hidden min-h-screen">
+      <div className="flex flex-col md:flex-row min-h-screen">
+        
+        {/* Left Sidebar Navigation - sticky on desktop, hidden on mobile */}
+        <nav className="hidden md:flex flex-col justify-between w-[280px] shrink-0 border-r-[1.5px] border-[#1A1A1A] p-8 h-screen sticky top-0 bg-[#F8F7F4] z-40">
+          <div>
+            <div 
+              className="font-editorial text-[1.8rem] font-semibold leading-[0.9] tracking-tight uppercase mb-12 cursor-pointer text-[#1A1A1A] hover:text-[#8B5E3C] transition-colors" 
+              onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             >
-              Biografia
-            </button>
-            <button 
-              className={`font-label-md text-label-md hover:text-surface-variant transition-colors duration-300 bg-transparent border-0 p-0 text-left cursor-pointer focus:outline-none ${activeView === 'services' ? 'text-surface font-semibold border-b border-surface' : 'text-surface/80'}`} 
-              onClick={() => {
-                setActiveView('services');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            >
-              Servizi
-            </button>
-            <button 
-              className={`font-label-md text-label-md hover:text-surface-variant transition-colors duration-300 bg-transparent border-0 p-0 text-left cursor-pointer focus:outline-none ${activeView === 'eventi' ? 'text-surface font-semibold border-b border-surface' : 'text-surface/80'}`} 
-              onClick={() => {
-                setActiveView('eventi');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            >
-              Eventi
-            </button>
-            <a 
-              className="font-label-md text-label-md text-surface/80 hover:text-surface-variant transition-colors duration-300" 
-              href="#contact" 
-              onClick={(e) => handleScroll(e, '#contact')}
-            >
-              Contatti
-            </a>
-            <a 
-              className="bg-surface text-primary px-6 py-2 rounded-full font-label-md text-label-md hover:bg-surface/90 transition-all active:scale-95 shadow-sm font-semibold" 
-              href="#contact" 
-              onClick={(e) => handleScroll(e, '#contact')}
-            >
-              Consulenza
-            </a>
+              CHEF<br/>MICHELA<br/>DOMIZI
+            </div>
+            <ul className="flex flex-col gap-5">
+              <li>
+                <button 
+                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'home' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                  onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                >
+                  Home Page
+                </button>
+              </li>
+              <li>
+                <button 
+                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'bio' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                  onClick={() => { setActiveView('bio'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                >
+                  Biografia
+                </button>
+              </li>
+              <li>
+                <button 
+                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'services' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                  onClick={() => { setActiveView('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                >
+                  Servizi
+                </button>
+              </li>
+              <li>
+                <button 
+                  className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer transition-colors duration-200 text-left ${activeView === 'eventi' ? 'text-[#1A1A1A] font-bold border-b border-[#1A1A1A]' : 'text-[#1A1A1A]/60 hover:text-[#1A1A1A]'}`}
+                  onClick={() => { setActiveView('eventi'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                >
+                  Eventi
+                </button>
+              </li>
+              <li>
+                <button 
+                  className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-[#1A1A1A]/60 hover:text-[#1A1A1A] transition-colors duration-200 text-left"
+                  onClick={navigateToContactSection}
+                >
+                  Contatti
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-mono-design text-[0.65rem] uppercase tracking-[0.12em] text-[#1A1A1A]/60">© 2026</p>
+            <p className="font-mono-design text-[0.65rem] uppercase tracking-[0.12em] text-[#1A1A1A]/60 mt-1">Civitanova Marche</p>
+          </div>
+        </nav>
+
+        {/* Mobile Sticky Header */}
+        <div className="md:hidden sticky top-0 w-full bg-[#F8F7F4] border-b border-[#1A1A1A] px-6 py-4 flex justify-between items-center z-50">
+          <div className="font-editorial text-xl font-semibold uppercase cursor-pointer" onClick={() => { setActiveView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+            Michela Domizi
           </div>
           <button 
-            type="button" 
-            className="md:hidden text-surface focus:outline-none" 
+            className="text-[#1A1A1A] p-1 focus:outline-none"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Menu Drawer */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-20 left-0 w-full bg-primary border-b border-surface/10 px-margin-mobile py-6 flex flex-col gap-5 shadow-lg">
+          <div className="md:hidden fixed top-[61px] left-0 w-full bg-[#F8F7F4] border-b border-[#1A1A1A] px-6 py-6 flex flex-col gap-4 shadow-xl z-50">
             <button 
-              className={`font-label-md text-label-md hover:text-surface transition-colors duration-300 bg-transparent border-0 p-0 text-left cursor-pointer focus:outline-none ${activeView === 'bio' ? 'text-surface font-semibold font-bold' : 'text-surface/80'}`} 
-              onClick={() => {
-                setActiveView('bio');
-                setIsMobileMenuOpen(false);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
+              className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left ${activeView === 'home' ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]/60'}`}
+              onClick={() => { setActiveView('home'); setIsMobileMenuOpen(false); }}
+            >
+              Home Page
+            </button>
+            <button 
+              className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left ${activeView === 'bio' ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]/60'}`}
+              onClick={() => { setActiveView('bio'); setIsMobileMenuOpen(false); }}
             >
               Biografia
             </button>
             <button 
-              className={`font-label-md text-label-md hover:text-surface transition-colors duration-300 bg-transparent border-0 p-0 text-left cursor-pointer focus:outline-none ${activeView === 'services' ? 'text-surface font-semibold font-bold' : 'text-surface/80'}`} 
-              onClick={() => {
-                setActiveView('services');
-                setIsMobileMenuOpen(false);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
+              className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left ${activeView === 'services' ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]/60'}`}
+              onClick={() => { setActiveView('services'); setIsMobileMenuOpen(false); }}
             >
               Servizi
             </button>
             <button 
-              className={`font-label-md text-label-md hover:text-surface transition-colors duration-300 bg-transparent border-0 p-0 text-left cursor-pointer focus:outline-none ${activeView === 'eventi' ? 'text-surface font-semibold font-bold' : 'text-surface/80'}`} 
-              onClick={() => {
-                setActiveView('eventi');
-                setIsMobileMenuOpen(false);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
+              className={`font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left ${activeView === 'eventi' ? 'text-[#1A1A1A] font-semibold' : 'text-[#1A1A1A]/60'}`}
+              onClick={() => { setActiveView('eventi'); setIsMobileMenuOpen(false); }}
             >
               Eventi
             </button>
-            <a 
-              className="font-label-md text-label-md text-surface/80 hover:text-surface transition-colors duration-300" 
-              href="#contact" 
-              onClick={(e) => handleScroll(e, '#contact')}
+            <button 
+              className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] border-none bg-transparent p-0 cursor-pointer text-left text-[#1A1A1A]/60"
+              onClick={() => { navigateToContactSection(); setIsMobileMenuOpen(false); }}
             >
               Contatti
-            </a>
-            <a 
-              className="bg-surface text-primary px-6 py-2 rounded-full font-label-md text-label-md hover:bg-surface/90 transition-all text-center active:scale-95 font-semibold" 
-              href="#contact" 
-              onClick={(e) => handleScroll(e, '#contact')}
-            >
-              Consulenza
-            </a>
+            </button>
           </div>
         )}
-      </nav>
 
-      <main>
-        {activeView === 'home' ? (
-          <>
-            {/* Hero Section */}
-        <section id="hero" className="relative min-h-[95vh] md:min-h-[90vh] flex items-center pt-36 pb-20 md:pt-44 md:pb-24 bg-gradient-to-br from-background via-[#fffbfa] to-[#fff6f1] overflow-hidden">
-          {/* Subtle elegant background elements */}
-          <div className="absolute top-0 right-0 w-1/3 h-full bg-[#fcf5ef]/60 pointer-events-none rounded-l-[120px] hidden lg:block z-0"></div>
-          
-          <div className="relative z-10 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
-            <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-              
-              {/* Text Information Column */}
-              <div className="lg:col-span-6 space-y-6 md:space-y-8 text-left z-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 border border-primary/10 text-primary font-label-md text-xs tracking-wider uppercase font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#eebf6d] animate-pulse"></span>
-                  <span>Chef a Domicilio &amp; Consulente Culinaria</span>
-                </div>
-                
-                <h1 className="font-headline-xl text-5xl sm:text-6xl lg:text-7xl text-primary leading-[1.05] tracking-tight">
-                  <span className="block font-medium drop-shadow-sm font-headline-lg">Michela Domizi</span>
-                  <span className="block text-2xl sm:text-3xl lg:text-4xl italic font-normal text-[#8b5e3c] mt-2 font-headline-md font-serif">
-                    Chef a Domicilio &amp; Consulente Culinaria
-                  </span>
-                </h1>
-                
-                <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
-                  Elevare le tradizioni delle Marche attraverso un'esperienza artigianale d'autore e una contemporanea visione culinaria. Un viaggio gastronomico che porta l'acquolina in bocca e il fine-dining direttamente a casa tua o nella tua cucina professionale.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <button 
-                    className="bg-primary text-surface px-8 py-4 double-rounded rounded-full font-label-md text-label-md hover:bg-primary/95 transition-all duration-300 text-center font-bold active:scale-95 shadow-sm" 
-                    onClick={() => {
-                      setActiveView('services');
-                      window.scrollTo({ top: 0, behavior: 'instant' });
-                    }}
-                  >
-                    Scopri i Servizi
-                  </button>
-                  <a 
-                    className="border border-[#76786f]/30 bg-white/40 backdrop-blur-sm text-primary px-8 py-4 rounded-full font-label-md text-label-md hover:bg-surface-container hover:border-primary/50 transition-all duration-300 text-center font-semibold" 
-                    href="#contact"
-                    onClick={(e) => handleScroll(e, '#contact')}
-                  >
-                    Prenota un'Esperienza
-                  </a>
-                </div>
+        {/* Main Content Pane */}
+        <main className="flex-1 min-w-0 flex flex-col">
+          {activeView === 'home' ? (
+            <>
+              {/* Header inside scrollable pane */}
+              <div className="view-header">
+                <span className="label">Home Discoveries / No. 00</span>
+                <span className="label">Chef Ambassador - Territorio Marchigiano</span>
               </div>
 
-              {/* Spectacular Visual Column */}
-              <div className="lg:col-span-6 relative flex justify-center lg:justify-end">
-                <div className="relative w-full max-w-[500px] aspect-[4/5] md:aspect-[1/1] lg:aspect-[4/5]">
-                  {/* Outer glow aura */}
-                  <div className="absolute -inset-4 bg-gradient-to-tr from-[#eebf6d]/10 to-[#8b5e3c]/5 rounded-[40px] blur-2xl opacity-75 z-0"></div>
-                  
-                  {/* Decorative warm abstract framing card */}
-                  <div className="absolute -top-3 -left-3 w-content h-content font-serif italic text-sm text-[#eebf6d]/60 select-none hidden sm:block">
-                    ★ Eccellenze Marchigiane
+              {/* Spectacular split content grid */}
+              <section className="content-grid border-b border-[#1A1A1A]/10">
+                <div className="text-panel flex flex-col justify-center">
+                  <p className="label mb-6">[ 00 ] BENVENUTI</p>
+                  <h1 className="font-editorial text-5xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tight uppercase mb-8">
+                    Michela<br/>Domizi
+                  </h1>
+                  <p className="quote text-xl md:text-2xl font-editorial italic text-[#8B5E3C] leading-relaxed mb-8">
+                    “La ristorazione per me non è mai un punto di arrivo, ma un esercizio quotidiano di crescita.”
+                  </p>
+                  <div className="body-text text-[#1A1A1A]/70 text-sm md:text-base leading-relaxed space-y-4 max-w-xl">
+                    <p>
+                      Elevare le tradizioni delle Marche attraverso un'esperienza artigianale d'autore e una contemporanea visione culinaria. Un viaggio gastronomico d'eccellenza che porta l'essenza pura del territorio e il fine-dining direttamente a casa tua o nella tua cucina professionale.
+                    </p>
                   </div>
+                  
+                  <div className="flex flex-wrap gap-4 mt-8 pt-6 border-t border-[#1A1A1A]/10">
+                    <button 
+                      className="inline-block bg-[#1A1A1A] text-[#F8F7F4] px-8 py-4 font-mono-design text-xs uppercase tracking-[0.12em] hover:bg-[#8B5E3C] transition-colors duration-300"
+                      onClick={() => { setActiveView('services'); window.scrollTo({ top: 0, behavior: 'instant' }); }}
+                    >
+                      Scopri i Servizi
+                    </button>
+                    <a 
+                      className="inline-block border-[1.5px] border-[#1A1A1A] text-[#1A1A1A] px-8 py-4 font-mono-design text-xs uppercase tracking-[0.12em] hover:bg-[#1A1A1A] hover:text-[#F8F7F4] transition-all duration-300"
+                      href="#contact"
+                      onClick={(e) => handleScroll(e, '#contact')}
+                    >
+                      Prenota un'Esperienza
+                    </a>
+                  </div>
+                </div>
 
-                  {/* Main Spectacular Food Photo Frame with Ambient Video */}
-                  <div className="relative w-full h-full rounded-[30px] overflow-hidden shadow-2xl border border-white/40 bg-[#f4ece7] z-10 group">
-                    <iframe
-                      className="w-full h-full object-cover scale-110"
-                      src="https://www.youtube.com/embed/_eMHMj-asaA?autoplay=1&mute=0&loop=1&playlist=_eMHMj-asaA&controls=1&showinfo=0&rel=0&modestbranding=1"
-                      title="Chef Michela Domizi Video"
-                      allow="autoplay; encrypted-media"
-                    ></iframe>
-                    <div className="absolute inset-0 bg-black/5 pointer-events-none"></div>
-                    
-                    {/* Floating pill */}
-                    <div className="absolute top-4 left-4 bg-black/45 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-white font-label-md text-xs tracking-wider uppercase flex items-center gap-1.5 shadow-lg">
-                      <span className="w-2 h-2 rounded-full bg-[#eebf6d]"></span>
-                      <span>Materia Prima Pura</span>
+                <div className="media-panel flex items-center justify-center p-8 bg-[#1A1A1A]/5 border-l border-[#1A1A1A]/10">
+                  <div className="w-full max-w-[500px] aspect-[4/5] relative">
+                    {/* Main Spectacular Video Frame with Ambient Video */}
+                    <div className="relative w-full h-full border border-[#1A1A1A] bg-[#f4ece7] overflow-hidden">
+                      <video 
+                        id="hero-bg-video"
+                        className="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02]" 
+                        src="./assets/video/nome-video.mp4"
+                        poster="./assets/img/anteprima-video.jpg"
+                        controls
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                      
+                      {/* Floating pill */}
+                      <div className="absolute top-4 left-4 bg-[#1A1A1A] text-[#F8F7F4] px-4 py-2 font-mono-design text-[10px] tracking-widest uppercase flex items-center gap-1.5 shadow-lg">
+                        <span className="w-2 h-2 bg-[#8B5E3C] animate-pulse"></span>
+                        <span>MATERIA PRIMA PURA</span>
+                      </div>
+
+                      {/* Exquisite Plate Overlay */}
+                      <div className="absolute bottom-4 right-4 max-w-[240px] bg-[#F8F7F4] p-4 border border-[#1A1A1A] shadow-lg hidden sm:block">
+                        <p className="font-editorial text-base text-[#1A1A1A] font-semibold leading-tight mb-1">Passione Artigianale</p>
+                        <p className="font-sans-design text-xs text-[#1A1A1A]/70 leading-normal">
+                          Ravioli fatti a mano ripieni di ricotta biologica locale e zafferano selvatico.
+                        </p>
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </section>
 
-                    {/* Exquisite Plate Overlay */}
-                    <div className="absolute bottom-4 right-4 max-w-[240px] bg-[#fff8f4]/95 backdrop-blur-md p-4 rounded-2xl border border-white/40 shadow-xl hidden sm:block animate-fade-in">
-                      <p className="font-headline-sm text-base text-primary font-semibold leading-tight mb-1">In collaborazione con</p>
-                      <p className="font-body-md text-xs text-secondary leading-normal font-medium">
-                        Molinos del Duero (Spagna)
+              {/* Stats Bar */}
+              <section className="stats-bar">
+                <div className="stat-cell">
+                  <span className="stat-val">Tortellini</span>
+                  <p className="label text-[#F8F7F4]/60">Piatto Identitario: Caccia, Zafferano e Tartufo</p>
+                </div>
+                <div className="stat-cell">
+                  <span className="stat-val">Etico</span>
+                  <p className="label text-[#F8F7F4]/60">Biodiversità e fornitori locali</p>
+                </div>
+                <div className="stat-cell">
+                  <span className="stat-val">Rurale</span>
+                  <p className="label text-[#F8F7F4]/60">Ispirazione rurale e contemporanea</p>
+                </div>
+              </section>
+
+              {/* About Section */}
+              <section id="about" className="py-24 px-6 md:px-12 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-16 items-center">
+                  <div className="relative reveal">
+                    <div className="aspect-[4/5] bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] overflow-hidden">
+                      <img 
+                        id="about-portrait"
+                        alt="Ritratto di Michela Domizi" 
+                        className="w-full h-full object-cover filter grayscale contrast-105" 
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe37KZnkGyDxWoK26y2Qh1JZr9bAx2_kKThn8nL8bWYYKKjYChlnGqweyQjxxMzZNtPJ9oD267mlb7urt0V-Lkp45vvzYPb8pcVILSUpgiG_UN9gTZ2X4paEQGUKjlVcB8wf4aqxbxhLnXqsip8y8YkrY-FG0_pa7M3fyN5GDGep66IaIRWflG8IjYav1xusFGL5QXIpSZHluS8JFevxWx37iVD8Hm7I3JMG4s9t2GH8dwXh5Se38mvLkLcrdrMIj1OSCMdLmGMFPx"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    <div className="absolute -bottom-6 -right-6 w-44 h-44 bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] flex items-center justify-center p-6 hidden md:flex">
+                      <p className="text-center font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A] leading-tight">
+                        Ispirato alla Tradizione Marchigiana
                       </p>
                     </div>
                   </div>
-
-                  {/* Secondary Overlapping Craft Detail Image */}
-                  <div className="absolute -bottom-6 -left-10 w-44 h-44 rounded-2xl overflow-hidden shadow-xl border-4 border-[#fff8f4] hidden md:block z-20 group">
-                    <img 
-                      alt="Preparazione pasta fatta a mano" 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                      src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&q=80&w=600"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-2 text-center">
-                      <p className="font-label-md text-[10px] text-white uppercase tracking-wider font-semibold font-bold">Gesto &amp; Tradizione</p>
+                  <div className="reveal space-y-6">
+                    <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 01 ] FILOSOFIA</p>
+                    <h2 className="font-editorial text-4xl md:text-5xl uppercase tracking-tight text-[#1A1A1A]">La Filosofia del Gusto</h2>
+                    <p className="font-sans-design text-sm md:text-base text-[#1A1A1A]/70 leading-relaxed">
+                      Nata e cresciuta tra le colline della regione Marche, il mio percorso culinario è iniziato nelle cucine della mia infanzia, dove il rispetto per l'ingrediente è stata la prima lezione appresa.
+                    </p>
+                    <p className="font-sans-design text-sm md:text-base text-[#1A1A1A]/70 leading-relaxed">
+                      Come chef a domicilio e consulente professionista, unisco la genuinità rurale alle tecniche contemporanee. Il mio approccio è minimalista e mirato: ogni piatto è l'espressione curata di stagione, territorio e maestria artigianale.
+                    </p>
+                    <div className="pt-4">
+                      <button 
+                        onClick={() => {
+                          setActiveView('bio');
+                          window.scrollTo({ top: 0, behavior: 'instant' });
+                        }}
+                        className="font-mono-design text-xs uppercase tracking-[0.12em] border-[1.5px] border-[#1A1A1A] text-[#1A1A1A] px-6 py-3 hover:bg-[#1A1A1A] hover:text-[#F8F7F4] transition-all duration-300 inline-flex items-center gap-2"
+                      >
+                        Leggi la mia storia completa <ArrowRight size={14} />
+                      </button>
+                    </div>
+                    <div className="grid grid-cols-2 gap-8 border-t border-[#1A1A1A]/10 pt-8 mt-8">
+                      <div>
+                        <span className="font-editorial text-3xl text-[#1A1A1A] block mb-1">15+</span>
+                        <span className="font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/60">Anni di Esperienza</span>
+                      </div>
+                      <div>
+                        <span className="font-editorial text-3xl text-[#1A1A1A] block mb-1">Marche</span>
+                        <span className="font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/60">Legame con il Territorio</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
 
-            </div>
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative reveal">
-              <div className="aspect-[4/5] bg-surface-container rounded-xl overflow-hidden shadow-lg">
-                <img 
-                  id="about-portrait"
-                  alt="Ritratto di Michela Domizi" 
-                  className="w-full h-full object-cover" 
-                  src={domiziImage}
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-primary-container/10 backdrop-blur-xl rounded-full flex items-center justify-center p-8 hidden md:flex border border-white/20">
-                <p className="text-center font-label-md text-label-md text-primary leading-tight">Ispirato alla Tradizione Marchigiana</p>
-              </div>
-            </div>
-            <div className="reveal">
-              <h2 className="font-headline-lg text-headline-lg text-primary mb-8">La Filosofia del Gusto</h2>
-              <p className="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed">
-                Nata e cresciuta tra le colline della regione Marche, il mio percorso culinario è iniziato nelle cucine della mia infanzia, dove il rispetto per l'ingrediente è stata la prima lezione appresa.
-              </p>
-              <p className="font-body-lg text-body-lg text-on-surface-variant mb-6 leading-relaxed">
-                Come chef a domicilio e consulente professionista, unisco la genuinità rurale alle tecniche contemporanee. Il mio approccio è minimalista e mirato: ogni piatto è l'espressione curata di stagione, territorio e maestria artigianale.
-              </p>
-              <div className="mb-8">
-                <button 
-                  onClick={() => {
-                    setActiveView('bio');
-                    window.scrollTo({ top: 0, behavior: 'instant' });
-                  }}
-                  className="font-label-md text-label-md bg-surface border border-outline text-primary px-6 py-3 rounded-full hover:bg-primary hover:text-surface hover:border-transparent transition-all duration-300 inline-flex items-center gap-2"
-                >
-                  Leggi la mia storia completa <ArrowRight size={16} />
-                </button>
-              </div>
-              <div className="grid grid-cols-2 gap-8 border-t border-outline/10 pt-8">
-                <div>
-                  <span className="font-headline-sm text-headline-sm text-primary block mb-1">15+</span>
-                  <span className="font-label-md text-label-md text-secondary">Anni di Esperienza</span>
+              {/* Featured Image Interlude */}
+              <section id="interlude" className="reveal border-b border-[#1A1A1A]/10">
+                <div className="h-[50vh] w-full relative">
+                  <img 
+                    id="interlude-food-image"
+                    alt="Piatto Artigianale" 
+                    className="w-full h-full object-cover filter brightness-[0.95] contrast-[1.02]" 
+                    src="https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&q=80&w=1800"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
-                <div>
-                  <span className="font-headline-sm text-headline-sm text-primary block mb-1">Marche</span>
-                  <span className="font-label-md text-label-md text-secondary">Legame con il Territorio</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              </section>
 
-        {/* Featured Image Interlude */}
-        <section id="interlude" className="reveal">
-          <div className="h-[60vh] w-full relative">
-            <img 
-              id="interlude-food-image"
-              alt="Piatto Artigianale" 
-              className="w-full h-full object-cover filter brightness-[0.9] contrast-[1.02]" 
-              src="https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&q=80&w=1800"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-        </section>
-
-        {/* Services Section */}
-        <section id="services" className="py-24 bg-surface-container-low">
-          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div className="text-center max-w-3xl mx-auto mb-20 reveal">
-              <h2 className="font-headline-lg text-headline-lg text-primary mb-4">Servizi Culinari Esclusivi</h2>
-              <p className="font-body-lg text-body-lg text-secondary">Soluzioni su misura per clienti esigenti e professionisti del settore che desiderano affinare il proprio racconto gastronomico.</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Service 1 */}
-              <div className="bg-background p-10 rounded-xl hover:shadow-xl transition-all duration-500 reveal group">
-                <div className="w-12 h-12 bg-primary-container/5 rounded-full flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
-                  <UtensilsCrossed size={22} className="text-primary group-hover:text-surface transition-colors" />
+              {/* Services Section */}
+              <section id="services" className="py-24 border-b border-[#1A1A1A]/10 max-w-7xl mx-auto px-6 md:px-12">
+                <div className="text-center max-w-3xl mx-auto mb-16 reveal space-y-4">
+                  <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 02 ] SERVIZI ESCLUSIVI</p>
+                  <h2 className="font-editorial text-4xl md:text-5xl uppercase text-[#1A1A1A]">Esperienze Gastronomiche</h2>
+                  <p className="font-sans-design text-sm md:text-base text-[#1A1A1A]/70 leading-relaxed">
+                    Soluzioni su misura per clienti esigenti e professionisti del settore che desiderano affinare il proprio racconto gastronomico.
+                  </p>
                 </div>
-                <h3 className="font-headline-sm text-headline-sm text-primary mb-4">Esperienze di Chef Privato</h3>
-                <p className="font-body-md text-body-md text-on-surface-variant mb-8 font-body-md">Viaggi gastronomici esclusivi a domicilio, da cene intime a celebrazioni su scala ridotta, incentrati sulla stagionalità.</p>
-                <ul className="space-y-3 font-label-md text-label-md text-secondary">
-                  <li className="flex items-center gap-2">
-                    <Check size={18} className="text-primary" /> Creazione Menu Personalizzati
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check size={18} className="text-primary" /> Abbinamento Vini Selezionati
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check size={18} className="text-primary" /> Gestione Completa della Cucina
-                  </li>
-                </ul>
-              </div>
-              {/* Service 2 */}
-              <div className="bg-primary text-surface p-10 rounded-xl shadow-2xl scale-105 z-10 reveal group">
-                <div className="w-12 h-12 bg-surface/20 rounded-full flex items-center justify-center mb-8">
-                  <Briefcase size={22} className="text-surface" />
+                <div className="grid md:grid-cols-3 gap-8">
+                  {/* Service 1 */}
+                  <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-8 reveal flex flex-col justify-between">
+                    <div>
+                      <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6">
+                        <UtensilsCrossed size={20} className="text-[#1A1A1A]" />
+                      </div>
+                      <h3 className="font-editorial text-xl uppercase font-semibold mb-3">Chef Privato</h3>
+                      <p className="font-sans-design text-sm text-[#1A1A1A]/70 mb-6 leading-relaxed">
+                        Viaggi gastronomici esclusivi a domicilio, da cene intime a celebrazioni speciali, incentrati sulla stagionalità.
+                      </p>
+                    </div>
+                    <ul className="space-y-2 border-t border-[#1A1A1A]/10 pt-4 font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/70">
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-[#8B5E3C]" /> Menu Personalizzati
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-[#8B5E3C]" /> Abbinamento Vini
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-[#8B5E3C]" /> Gestione Completa
+                      </li>
+                    </ul>
+                  </div>
+                  {/* Service 2 */}
+                  <div className="bg-[#1A1A1A] text-[#F8F7F4] p-8 border-[1.5px] border-[#1A1A1A] reveal flex flex-col justify-between">
+                    <div>
+                      <div className="w-12 h-12 bg-[#F8F7F4]/10 border border-[#F8F7F4]/20 flex items-center justify-center mb-6">
+                        <Briefcase size={20} className="text-[#F8F7F4]" />
+                      </div>
+                      <h3 className="font-editorial text-xl uppercase font-semibold mb-3 text-[#F8F7F4]">Consulenza Food</h3>
+                      <p className="font-sans-design text-sm text-[#F8F7F4]/80 mb-6 leading-relaxed">
+                        Sviluppo strategico dei menu e ottimizzazione dei processi operativi per ristoranti e nuove attività culinarie.
+                      </p>
+                    </div>
+                    <ul className="space-y-2 border-t border-[#F8F7F4]/10 pt-4 font-mono-design text-[10px] uppercase tracking-wider text-[#F8F7F4]/70">
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-[#8B5E3C]" /> Flusso di Lavoro
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-[#8B5E3C]" /> Training Personale
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-[#8B5E3C]" /> Identità Marchigiana
+                      </li>
+                    </ul>
+                  </div>
+                  {/* Service 3 */}
+                  <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-8 reveal flex flex-col justify-between">
+                    <div>
+                      <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6">
+                        <NotebookPen size={20} className="text-[#1A1A1A]" />
+                      </div>
+                      <h3 className="font-editorial text-xl uppercase font-semibold mb-3">Menu su Misura</h3>
+                      <p className="font-sans-design text-sm text-[#1A1A1A]/70 mb-6 leading-relaxed">
+                        Sviluppo di ricette esclusive per brand, eventi privati e food styling incentrato su ingredienti d'eccellenza.
+                      </p>
+                    </div>
+                    <ul className="space-y-2 border-t border-[#1A1A1A]/10 pt-4 font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/70">
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-[#8B5E3C]" /> Standardizzazione Ricette
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-[#8B5E3C]" /> Approvvigionamento Locali
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check size={14} className="text-[#8B5E3C]" /> Supporto Culinario
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <h3 className="font-headline-sm text-headline-sm text-surface mb-4">Consulenza Culinaria</h3>
-                <p className="font-body-md text-body-md text-surface/80 mb-8 font-body-md">Sviluppo strategico dei menu e ottimizzazione dei processi operativi per ristoranti e attività di ristorazione.</p>
-                <ul className="space-y-3 font-label-md text-label-md text-surface/90">
-                  <li className="flex items-center gap-2">
-                    <Check size={18} className="text-surface" /> Ottimizzazione del Flusso di Lavoro
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check size={18} className="text-surface" /> Workshop di Formazione del Personale
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check size={18} className="text-surface" /> Valorizzazione dell'Identità Regionale
-                  </li>
-                </ul>
-              </div>
-              {/* Service 3 */}
-              <div className="bg-background p-10 rounded-xl hover:shadow-xl transition-all duration-500 reveal group">
-                <div className="w-12 h-12 bg-primary-container/5 rounded-full flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
-                  <NotebookPen size={22} className="text-primary group-hover:text-surface transition-colors" />
+              </section>
+
+              {/* Supporting Visuals Section (Bento Style) */}
+              <section id="bento-gallery" className="py-24 max-w-7xl mx-auto px-6 md:px-12 border-b border-[#1A1A1A]/10">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[800px] md:h-[500px]">
+                  <div className="md:col-span-2 md:row-span-2 overflow-hidden border border-[#1A1A1A] reveal">
+                    <img 
+                      id="gallery-image-1"
+                      alt="Supporto Culinario" 
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-[750ms] filter grayscale contrast-105" 
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuANeIy77AFOCzh8pRR8u9wPrJxOBPxew3AEF8ZewTVfsTCyWwVlB6704mu6BtPrdn_ewt3N4Z53oBzew8Ame7f9-TwLoAIOj3mDK8xkMaRdU6aBvVvyO6LqjnPurAqIeM2pk5f3_ywquyqZqEQS7LxQyot4lzI_gqqHa58R3_7tZ9DiP2edN20x7QVcENVIpVkRB3LOt3iAQzrQLrsRypwyV1GHcNxu-3LfPWb5ab8Ro_3KKYXYqPDoyeeG9l8YwTuTXsVE4Bonoo_q"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div className="md:col-span-2 overflow-hidden border border-[#1A1A1A] reveal">
+                    <img 
+                      id="gallery-image-2"
+                      alt="Pasta Fatta a Mano" 
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-[750ms]" 
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAORt5fup2uAqqbSUIZ1Hfd7hvlxqAlWAODxHnl3sT2-_eziGyLn78I8iFAYytBZN9vFgYF1ljJrGlBPF8lZzRzGSuwndwVg1xiuChlWOGWEYJTQ3qA4u1K0ihCRA26ci1RxWN-mS90N1B50lFXGV60dQNejtOJrhWWvw-m4Pl0kuePympR4_riRFWWFtrz_NaWA-jfawx8mUI_xuIGBB5czF-26jqxCTfIw6KhysalpSUcf-4YhE611WS70O_joCAT749hgKhX2_yW"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div className="overflow-hidden border border-[#1A1A1A] reveal">
+                    <img 
+                      id="gallery-image-3"
+                      alt="Ingredienti Freschi" 
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-[750ms]" 
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_bkDH4IqIJOlqjyVbQ_N81W7zDSLonb7e4idM2DkVBP2Fr02ah6S7J9FP2rK0VMFV0T1AMwSfpqfjdlnTuU_7UFt0h-h1bi4V7UuWM7ZDg0CkLqVmpc2b-cxAb7byXHr7tNz3HbL22SQCSiyL_iVCdNpIuZ2Or3MA_COXmU-OeOBFVyH4NH_NGNHElxxjT01Lg6z7blStSvILqFGkgdPd-StYtAtPubeWthfvfEet04xz_e9WpoUqHTsbtWVTRQajzlUEDUIeXEDR"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div className="overflow-hidden border border-[#1A1A1A] reveal">
+                    <img 
+                      id="gallery-image-4"
+                      alt="Ambiente Cucina" 
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-[750ms]" 
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrug30wPRvQ7urNiCDGQjKniS6LIn06scHAguKUdNLvu3gCG6-JxNBAee7Vl33XFBrlCCUTE3YmxDSZJb9Q97_-RgPjRmwVs7XPstoQRg7Mhfnii_fDV0GRX-nj-EyXstHxZqXOLNVqPJkBggs66njBVqa_WeM-hzUlWpyYXtgM3j0FbqFNtUryV3voGeHlOXbuISV-ByoJVSzzfnaJbgfgigDoCYl1jqtLnfpDgKWCkxHLO6ZTVMBIMTWZZhEMFeR_hpZVxHKX4kw"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
                 </div>
-                <h3 className="font-headline-sm text-headline-sm text-primary mb-4">Creazione Menu su Misura</h3>
-                <p className="font-body-md text-body-md text-on-surface-variant mb-8 font-body-md">Sviluppo di ricette su misura per brand, pubblicazioni ed eventi privati con un focus su ingredienti artigianali.</p>
-                <ul className="space-y-3 font-label-md text-label-md text-secondary">
-                  <li className="flex items-center gap-2">
-                    <Check size={18} className="text-primary" /> Standardizzazione delle Ricette
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check size={18} className="text-primary" /> Guide all'Approvvigionamento Stagionale
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check size={18} className="text-primary" /> Supporto per Food Styling
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
+              </section>
 
-        {/* Supporting Visuals Section (Bento Style) */}
-        <section id="bento-gallery" className="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[800px] md:h-[600px]">
-            <div className="md:col-span-2 md:row-span-2 overflow-hidden rounded-xl reveal">
-              <img 
-                id="gallery-image-1"
-                alt="Supporto Culinario" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuANeIy77AFOCzh8pRR8u9wPrJxOBPxew3AEF8ZewTVfsTCyWwVlB6704mu6BtPrdn_ewt3N4Z53oBzew8Ame7f9-TwLoAIOj3mDK8xkMaRdU6aBvVvyO6LqjnPurAqIeM2pk5f3_ywquyqZqEQS7LxQyot4lzI_gqqHa58R3_7tZ9DiP2edN20x7QVcENVIpVkRB3LOt3iAQzrQLrsRypwyV1GHcNxu-3LfPWb5ab8Ro_3KKYXYqPDoyeeG9l8YwTuTXsVE4Bonoo_q"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="md:col-span-2 overflow-hidden rounded-xl reveal">
-              <img 
-                id="gallery-image-2"
-                alt="Pasta Fatta a Mano" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAORt5fup2uAqqbSUIZ1Hfd7hvlxqAlWAODxHnl3sT2-_eziGyLn78I8iFAYytBZN9vFgYF1ljJrGlBPF8lZzRzGSuwndwVg1xiuChlWOGWEYJTQ3qA4u1K0ihCRA26ci1RxWN-mS90N1B50lFXGV60dQNejtOJrhWWvw-m4Pl0kuePympR4_riRFWWFtrz_NaWA-jfawx8mUI_xuIGBB5czF-26jqxCTfIw6KhysalpSUcf-4YhE611WS70O_joCAT749hgKhX2_yW"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="overflow-hidden rounded-xl reveal">
-              <img 
-                id="gallery-image-3"
-                alt="Ingredienti Freschi" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_bkDH4IqIJOlqjyVbQ_N81W7zDSLonb7e4idM2DkVBP2Fr02ah6S7J9FP2rK0VMFV0T1AMwSfpqfjdlnTuU_7UFt0h-h1bi4V7UuWM7ZDg0CkLqVmpc2b-cxAb7byXHr7tNz3HbL22SQCSiyL_iVCdNpIuZ2Or3MA_COXmU-OeOBFVyH4NH_NGNHElxxjT01Lg6z7blStSvILqFGkgdPd-StYtAtPubeWthfvfEet04xz_e9WpoUqHTsbtWVTRQajzlUEDUIeXEDR"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="overflow-hidden rounded-xl reveal">
-              <img 
-                id="gallery-image-4"
-                alt="Ambiente Cucina" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrug30wPRvQ7urNiCDGQjKniS6LIn06scHAguKUdNLvu3gCG6-JxNBAee7Vl33XFBrlCCUTE3YmxDSZJb9Q97_-RgPjRmwVs7XPstoQRg7Mhfnii_fDV0GRX-nj-EyXstHxZqXOLNVqPJkBggs66njBVqa_WeM-hzUlWpyYXtgM3j0FbqFNtUryV3voGeHlOXbuISV-ByoJVSzzfnaJbgfgigDoCYl1jqtLnfpDgKWCkxHLO6ZTVMBIMTWZZhEMFeR_hpZVxHKX4kw"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonial Section */}
-        <section id="testimonial" className="py-32 bg-primary text-surface overflow-hidden relative">
-          <div className="absolute top-0 left-0 opacity-5 pointer-events-none">
-            <span className="text-[300px] font-headline-lg leading-none">"</span>
-          </div>
-          <div className="max-w-4xl mx-auto px-margin-mobile text-center relative z-10 reveal">
-            <h2 className="font-headline-md text-headline-md italic mb-12 leading-relaxed">
-              "L'approccio di Michela non riguarda semplicemente la cucina; riguarda lo storytelling. Cattura la vera essenza del nostro territorio e la traduce in un linguaggio che è allo tempo stesso antico e straordinariamente fresco."
-            </h2>
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-px bg-on-tertiary-container/30 mb-6"></div>
-              <p className="font-label-md text-label-md tracking-widest uppercase">Gourmet Quarterly Review</p>
-            </div>
-          </div>
-        </section>
+              {/* Testimonial Section */}
+              <section id="testimonial" className="py-24 bg-[#1A1A1A] text-[#F8F7F4] overflow-hidden relative">
+                <div className="max-w-4xl mx-auto px-6 text-center relative z-10 reveal space-y-6">
+                  <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#F8F7F4]/60">REVIEW</p>
+                  <h2 className="font-editorial text-2xl md:text-3xl italic leading-relaxed text-[#F8F7F4]/90">
+                    "L'approccio di Michela non riguarda semplicemente la cucina; riguarda lo storytelling. Cattura la vera essenza del nostro territorio e la traduce in un linguaggio che è allo tempo stesso antico e straordinariamente fresco."
+                  </h2>
+                  <div className="flex flex-col items-center pt-4">
+                    <div className="w-12 h-px bg-[#8B5E3C] mb-4"></div>
+                    <p className="font-mono-design text-[10px] tracking-widest uppercase text-[#F8F7F4]/60">Gourmet Quarterly Review</p>
+                  </div>
+                </div>
+              </section>
 
               {/* Contact Section */}
-        <section id="contact" className="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-          <div id="modulo-contatti" className="scroll-mt-24"></div>
-          <div className="grid md:grid-cols-2 gap-20">
-            <div className="reveal">
-              <h2 className="font-headline-lg text-headline-lg text-primary mb-6">Creiamo Insieme</h2>
-              <p className="font-body-lg text-body-lg text-on-surface-variant mb-12">
-                Che tu stia cercando uno chef privato per un evento esclusivo o una consulenza per la tua attività culinaria, sarò felice di valutare come portare la tua visione in tavola.
-              </p>
-              <div className="space-y-8">
-                <div className="flex items-start gap-4">
-                  <MapPin className="text-primary w-6 h-6 mt-0.5" />
-                  <div>
-                    <p className="font-label-md text-label-md text-primary">Sede</p>
-                    <p className="font-body-md text-body-md text-secondary">Macerata, Marche, Italia</p>
+              <section id="contact" className="py-24 max-w-7xl mx-auto px-6 md:px-12 scroll-mt-12">
+                <div className="grid md:grid-cols-2 gap-16 items-start">
+                  <div className="reveal space-y-6">
+                    <p className="font-mono-design text-[0.7rem] uppercase tracking-[0.15em] text-[#1A1A1A]/60">[ 03 ] CONTATTI</p>
+                    <h2 className="font-editorial text-4xl md:text-5xl uppercase tracking-tight text-[#1A1A1A]">Creiamo Insieme</h2>
+                    <p className="font-sans-design text-sm md:text-base text-[#1A1A1A]/70 leading-relaxed">
+                      Che tu stia cercando uno chef privato per un evento esclusivo o una consulenza per la tua attività culinaria, sarò felice di valutare come portare la tua visione in tavola.
+                    </p>
+                    <div className="space-y-6 border-t border-[#1A1A1A]/10 pt-8 mt-8">
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mt-0.5">
+                          <MapPin className="text-[#1A1A1A] w-4 h-4" />
+                        </div>
+                        <div>
+                          <p className="font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/60">Sede</p>
+                          <p className="font-sans-design text-sm text-[#1A1A1A]/80">Macerata, Marche, Italia</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mt-0.5">
+                          <Mail className="text-[#1A1A1A] w-4 h-4" />
+                        </div>
+                        <div>
+                          <p className="font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/60">Richieste</p>
+                          <p className="font-sans-design text-sm text-[#1A1A1A]/80">ciao@micheladomizi.com</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="reveal border border-[#1A1A1A] bg-[#F8F7F4]">
+                    <ConversionForm />
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <Mail className="text-primary w-6 h-6 mt-0.5" />
-                  <div>
-                    <p className="font-label-md text-label-md text-primary">Richieste</p>
-                    <p className="font-body-md text-body-md text-secondary">ciao@micheladomizi.com</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="reveal">
-              <ConversionForm />
-            </div>
-          </div>
-        </section>
-      </>
-    ) : activeView === 'bio' ? (
-      <BiographyView 
-        onBackToHome={() => {
-          setActiveView('home');
-          window.scrollTo({ top: 0, behavior: 'instant' });
-        }} 
-        onNavigateToContact={() => {
-          setActiveView('home');
-          setTimeout(() => {
-            const element = document.getElementById('contact');
-            if (element) {
-              const offset = 80;
-              const elementPosition = element.getBoundingClientRect().top;
-              const offsetPosition = elementPosition + window.scrollY - offset;
-              window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
-          }, 100);
-        }} 
-      />
-    ) : activeView === 'services' ? (
-      <ServicesView 
-        onBackToHome={() => {
-          setActiveView('home');
-          window.scrollTo({ top: 0, behavior: 'instant' });
-        }} 
-        onNavigateToContact={() => {
-          setActiveView('home');
-          setTimeout(() => {
-            const element = document.getElementById('contact');
-            if (element) {
-              const offset = 80;
-              const elementPosition = element.getBoundingClientRect().top;
-              const offsetPosition = elementPosition + window.scrollY - offset;
-              window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
-          }, 100);
-        }} 
-      />
-    ) : (
-      <EventsView 
-        onBackToHome={() => {
-          setActiveView('home');
-          window.scrollTo({ top: 0, behavior: 'instant' });
-        }} 
-        onNavigateToContact={() => {
-          setActiveView('home');
-          setTimeout(() => {
-            const element = document.getElementById('contact');
-            if (element) {
-              const offset = 80;
-              const elementPosition = element.getBoundingClientRect().top;
-              const offsetPosition = elementPosition + window.scrollY - offset;
-              window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
-          }, 100);
-        }} 
-      />
-    )}
-      </main>
+              </section>
+            </>
+          ) : activeView === 'bio' ? (
+            <BiographyView 
+              onBackToHome={() => {
+                setActiveView('home');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+              }} 
+              onNavigateToContact={() => {
+                setActiveView('home');
+                setTimeout(() => {
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    const offset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - offset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                  }
+                }, 100);
+              }} 
+            />
+          ) : activeView === 'services' ? (
+            <ServicesView 
+              onBackToHome={() => {
+                setActiveView('home');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+              }} 
+              onNavigateToContact={() => {
+                setActiveView('home');
+                setTimeout(() => {
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    const offset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - offset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                  }
+                }, 100);
+              }} 
+            />
+          ) : (
+            <EventsView 
+              onBackToHome={() => {
+                setActiveView('home');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+              }} 
+              onNavigateToContact={() => {
+                setActiveView('home');
+                setTimeout(() => {
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    const offset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - offset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                  }
+                }, 100);
+              }} 
+            />
+          )}
 
-      {/* Footer */}
+          {/* Footer */}
       <footer id="footer" className="bg-primary text-surface w-full border-t border-surface/10">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-24">
           
@@ -815,6 +839,8 @@ export default function App() {
 
         </div>
       </footer>
+    </main>
+  </div>
 
       {/* Cookie Consent Banner */}
       {isCookieBannerOpen && (

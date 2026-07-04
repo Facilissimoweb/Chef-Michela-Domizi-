@@ -199,7 +199,7 @@ export default function BiographyView({ onBackToHome, onNavigateToContact }: Bio
             <div className="absolute left-[-23px] md:left-[50%] md:translate-x-[-11px] top-1.5 w-6 h-6 rounded-full bg-background border-4 border-primary flex items-center justify-center"></div>
             <div className="md:pl-12">
               <span className="inline-block px-4 py-1.5 rounded-full bg-primary-container/10 border border-primary/20 text-primary font-mono text-sm font-semibold mb-3">
-                Collaborazioni Prestigiose
+                Collaborazioni Prestiogiose
               </span>
               <h3 className="font-headline-sm text-lg text-primary font-semibold mb-2">Gli Scambi e le Cene "a Quattro Mani"</h3>
               <p className="font-body-md text-on-surface-variant text-sm leading-relaxed">
