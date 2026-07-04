@@ -427,9 +427,9 @@ export default function App() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full justify-items-center">
                   {/* Service 1 */}
-                  <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-8 reveal flex flex-col justify-between w-full max-w-md md:max-w-none mx-auto">
+                  <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-6 sm:p-8 reveal flex flex-col justify-between w-full max-w-md md:max-w-none mx-auto text-center md:text-left">
                     <div>
-                      <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6">
+                      <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6 mx-auto md:mx-0">
                         <UtensilsCrossed size={20} className="text-[#1A1A1A]" />
                       </div>
                       <h3 className="font-editorial text-xl uppercase font-semibold mb-3">Chef Privato</h3>
@@ -437,7 +437,7 @@ export default function App() {
                         Viaggi gastronomici esclusivi a domicilio, da cene intime a celebrazioni speciali, incentrati sulla stagionalità.
                       </p>
                     </div>
-                    <ul className="space-y-2 border-t border-[#1A1A1A]/10 pt-4 font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/70">
+                    <ul className="space-y-2 border-t border-[#1A1A1A]/10 pt-4 font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/70 flex flex-col items-center md:items-start w-full">
                       <li className="flex items-center gap-2">
                         <Check size={14} className="text-[#8B5E3C]" /> Menu Personalizzati
                       </li>
@@ -450,9 +450,9 @@ export default function App() {
                     </ul>
                   </div>
                   {/* Service 2 */}
-                  <div className="bg-[#1A1A1A] text-[#F8F7F4] p-8 border-[1.5px] border-[#1A1A1A] reveal flex flex-col justify-between w-full max-w-md md:max-w-none mx-auto">
+                  <div className="bg-[#1A1A1A] text-[#F8F7F4] p-6 sm:p-8 border-[1.5px] border-[#1A1A1A] reveal flex flex-col justify-between w-full max-w-md md:max-w-none mx-auto text-center md:text-left">
                     <div>
-                      <div className="w-12 h-12 bg-[#F8F7F4]/10 border border-[#F8F7F4]/20 flex items-center justify-center mb-6">
+                      <div className="w-12 h-12 bg-[#F8F7F4]/10 border border-[#F8F7F4]/20 flex items-center justify-center mb-6 mx-auto md:mx-0">
                         <Briefcase size={20} className="text-[#F8F7F4]" />
                       </div>
                       <h3 className="font-editorial text-xl uppercase font-semibold mb-3 text-[#F8F7F4]">Consulenza Food</h3>
@@ -460,7 +460,7 @@ export default function App() {
                         Sviluppo strategico dei menu e ottimizzazione dei processi operativi per ristoranti e nuove attività culinarie.
                       </p>
                     </div>
-                    <ul className="space-y-2 border-t border-[#F8F7F4]/10 pt-4 font-mono-design text-[10px] uppercase tracking-wider text-[#F8F7F4]/70">
+                    <ul className="space-y-2 border-t border-[#F8F7F4]/10 pt-4 font-mono-design text-[10px] uppercase tracking-wider text-[#F8F7F4]/70 flex flex-col items-center md:items-start w-full">
                       <li className="flex items-center gap-2">
                         <Check size={14} className="text-[#8B5E3C]" /> Flusso di Lavoro
                       </li>
@@ -473,9 +473,9 @@ export default function App() {
                     </ul>
                   </div>
                   {/* Service 3 */}
-                  <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-8 reveal flex flex-col justify-between w-full max-w-md md:max-w-none mx-auto">
+                  <div className="bg-[#F8F7F4] border-[1.5px] border-[#1A1A1A] p-6 sm:p-8 reveal flex flex-col justify-between w-full max-w-md md:max-w-none mx-auto text-center md:text-left">
                     <div>
-                      <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6">
+                      <div className="w-12 h-12 bg-[#1A1A1A]/5 border border-[#1A1A1A] flex items-center justify-center mb-6 mx-auto md:mx-0">
                         <NotebookPen size={20} className="text-[#1A1A1A]" />
                       </div>
                       <h3 className="font-editorial text-xl uppercase font-semibold mb-3">Menu su Misura</h3>
@@ -483,7 +483,7 @@ export default function App() {
                         Sviluppo di ricette esclusive per brand, eventi privati e food styling incentrato su ingredienti d'eccellenza.
                       </p>
                     </div>
-                    <ul className="space-y-2 border-t border-[#1A1A1A]/10 pt-4 font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/70">
+                    <ul className="space-y-2 border-t border-[#1A1A1A]/10 pt-4 font-mono-design text-[10px] uppercase tracking-wider text-[#1A1A1A]/70 flex flex-col items-center md:items-start w-full">
                       <li className="flex items-center gap-2">
                         <Check size={14} className="text-[#8B5E3C]" /> Standardizzazione Ricette
                       </li>
