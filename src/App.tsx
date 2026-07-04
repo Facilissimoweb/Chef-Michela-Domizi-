@@ -440,16 +440,14 @@ export default function App() {
                   <div className="w-full max-w-[500px] aspect-[4/5] relative">
                     {/* Main Spectacular Video Frame with Ambient Video */}
                     <div className="relative w-full h-full border border-[#1A1A1A] bg-[#f4ece7] overflow-hidden">
-                      <video 
+                      <iframe 
                         id="hero-bg-video"
-                        className="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02]" 
-                        src="https://assets.mixkit.co/videos/preview/mixkit-cooking-in-a-professional-kitchen-40011-large.mp4"
-                        poster="./assets/img/anteprima-video.jpg"
-                        controls
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
+                        className="w-full h-full object-cover filter brightness-[0.98] contrast-[1.02]" 
+                        src="https://www.youtube.com/embed/rgEpsxLPZS4?autoplay=1&mute=1&loop=1&playlist=rgEpsxLPZS4&enablejsapi=1"
+                        title="Chef Michela Domizi"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
                       />
                       
                       {/* Floating pill */}
